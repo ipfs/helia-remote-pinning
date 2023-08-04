@@ -1,0 +1,41 @@
+{
+  "name": "@helia/remote-pinning",
+  "version": "0.0.1",
+  "description": "A library that helps Helia users pin content via the IPFS pinning-services-api-spec",
+  "author": "SgtPooki@protocol.ai",
+  "license": "Apache-2.0 OR MIT",
+  "homepage": "https://github.com/ipfs/helia-remote-pinning#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ipfs/helia-remote-pinning.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ipfs/helia-remote-pinning/issues"
+  },
+  "keywords": [
+    "helia",
+    "ipfs"
+  ],
+  "main": "src/index.js",
+  "files": [
+    "src",
+    "dist"
+  ],
+  "eslintConfig": {
+    "extends": "ipfs"
+  },
+  "scripts": {
+    "test": "aegir test"
+  },
+  "devDependencies": {
+    "@helia/interface": "^1.2.1",
+    "aegir": "^40.0.8"
+  },
+  "peerDependencies": {
+    "@ipfs-shipyard/pinning-service-client": "^1.0.3",
+    "helia": "^1.3.11"
+  },
+  "dependencies": {
+    "multiformats": "^12.0.1"
+  }
+}
