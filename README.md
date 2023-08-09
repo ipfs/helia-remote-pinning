@@ -30,7 +30,7 @@ A longer repository description.
 
 ## Lead Maintainer
 
-[Your name](https://github.com/alinktoyourname)
+[SgtPooki](https://github.com/sgtpooki)
 
 ## Contributing
 
