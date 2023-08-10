@@ -2,40 +2,33 @@ import { type RemotePinningServiceClient, type Pin, type PinStatus, type PinsReq
 import { multiaddr } from '@multiformats/multiaddr'
 import debug from 'debug'
 import pRetry from 'p-retry'
+import { FailedToConnectToDelegates } from './errors.js'
 import type { Helia } from '@helia/interface'
 import type { CID } from 'multiformats/cid'
 
 const log = debug('helia-remote-pinning')
 const logError = log.extend('error')
 const logTrace = log.extend('trace')
-// const trace = log.extend('trace')
 
 export interface HeliaRemotePinningOptions {
   /**
    * Control whether requests are aborted or not by manually aborting a signal or using AbortSignal.timeout()
    */
   signal?: AbortSignal
-}
 
-export interface AddPinArgs extends Omit<Pin, 'cid'>, HeliaRemotePinningOptions {
+  /**
+   * The CID instance to pin. When using Helia, passing around the CID object is preferred over the string.
+   */
   cid: CID
 }
 
-export interface ReplacePinArgs extends Omit<PinsRequestidPostRequest, 'pin'>, Omit<Pin, 'cid'>, HeliaRemotePinningOptions {
-  cid: CID
-}
+export interface AddPinArgs extends Omit<Pin, 'cid'>, HeliaRemotePinningOptions {}
+
+export interface ReplacePinArgs extends Omit<PinsRequestidPostRequest, 'pin'>, Omit<Pin, 'cid'>, HeliaRemotePinningOptions {}
 
 export class HeliaRemotePinner {
   constructor (private readonly heliaInstance: Helia, private readonly remotePinningClient: RemotePinningServiceClient) {
   }
-
-  // private readonly getChildSignal = (): AbortSignal => {
-  //   const delegateDialAbortController = new AbortController()
-  //   // this.options?.signal?.addEventListener('abort', () => {
-  //   //   delegateDialAbortController.abort()
-  //   // })
-  //   return delegateDialAbortController.signal
-  // }
 
   private async getOrigins (otherOrigins: Pin['origins']): Promise<Set<string>> {
     const origins = new Set(this.heliaInstance.libp2p.getMultiaddrs().map(multiaddr => multiaddr.toString()))
@@ -48,25 +41,19 @@ export class HeliaRemotePinner {
   }
 
   private async connectToDelegates (delegates: Set<string>, signal?: AbortSignal): Promise<void> {
-    // const signal = this.getChildSignal()
+    let successfulDials = 0
     try {
       for (const delegate of delegates) {
         await this.heliaInstance.libp2p.dial(multiaddr(delegate), { signal })
+        successfulDials++
       }
     } catch (e) {
       logError(e)
     }
+    if (successfulDials === 0) {
+      throw new FailedToConnectToDelegates('Failed to connect to any delegates')
+    }
   }
-
-  // /**
-  //  * We need to ensure that pinStatus is either pinned or failed.
-  //  * To do so, we will need to poll the remote pinning service for the status of the pin.
-  //  */
-  // private async waitForPinStatus (requestid: string): Promise<PinStatus> {
-  //   const pinStatus =
-
-  //   return pinStatus
-  // }
 
   /**
    * The code that runs after we get a pinStatus from the remote pinning service.
@@ -82,7 +69,7 @@ export class HeliaRemotePinner {
      */
     try {
       await pRetry(async (attemptNum) => {
-        logTrace('p-retry attempt #%d', attemptNum)
+        logTrace('attempt #%d waiting for pinStatus of "pinned" or "failed"', attemptNum)
         updatedPinStatus = await this.remotePinningClient.pinsRequestidGet({ requestid: pinStatus.requestid })
         if ([Status.Pinned, Status.Failed].includes(pinStatus.status)) {
           return updatedPinStatus
