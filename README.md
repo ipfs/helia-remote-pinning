@@ -22,11 +22,50 @@
 $ npm i @helia/remote-pinning
 ```
 
-A longer repository description.
-
 ## Documentation
 
-[Insert link to documentation]() or expand with Install, Build, Usage sections.
+### Create remote pinner
+
+```typescript
+import { unixfs } from '@helia/unixfs'
+import { Configuration, RemotePinningServiceClient } from '@ipfs-shipyard/pinning-service-client'
+import { createHelia } from 'helia'
+import { createRemotePinner } from '../src/index.js'
+
+const helia = await createHelia()
+const pinServiceConfig = new Configuration({
+  endpointUrl: `${endpointUrl}`, // the URI for your pinning provider, e.g. `http://localhost:3000`
+  accessToken: `${accessToken}` // the secret token/key given to you by your pinning provider
+})
+
+const remotePinningClient = new RemotePinningServiceClient(pinServiceConfig)
+const remotePinner = createRemotePinner(helia, remotePinningClient)
+```
+
+### Add a pin
+
+```typescript
+const heliaFs = unixfs(helia)
+const cid = await heliaFs.addBytes(encoder.encode('hello world'))
+const addPinResult = await remotePinner.addPin({
+  cid,
+  name: 'helloWorld'
+})
+```
+
+
+### Replace a pin
+
+```typescript
+
+const newCid = await heliaFs.addBytes(encoder.encode('hi galaxy'))
+const replacePinResult = await remotePinner.replacePin({
+  newCid,
+  name: 'hiGalaxy',
+  requestid: addPinResult.requestid
+})
+
+```
 
 ## Lead Maintainer
 
