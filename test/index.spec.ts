@@ -174,7 +174,7 @@ describe('@helia/remote-pinning', function () {
         name: 'pinned-test3-replaced',
         requestid: addPinResult.requestid
       })
-      // console.log('replacePinResult: ', replacePinResult)
+
       expect(replacePinResult.status).to.equal(Status.Pinned)
       expect(replacePinResult.requestid).not.to.equal(addPinResult.requestid)
 
