@@ -40,7 +40,7 @@ describe('@helia/remote-pinning', function () {
     sinonSandbox.restore()
     await helia.stop()
     const pins = await remotePinningClient.pinsGet()
-    await Promise.all([...pins.results].map(pin => remotePinningClient.pinsRequestidDelete({ requestid: pin.requestid })))
+    await Promise.all([...pins.results].map(async pin => remotePinningClient.pinsRequestidDelete({ requestid: pin.requestid })))
   })
   describe('addPin', function () {
     it('Returns pinned status when pinning succeeds', async function () {
@@ -97,15 +97,19 @@ describe('@helia/remote-pinning', function () {
       expect(abortController.signal.aborted).to.equal(true)
     })
 
-    it('Stops listening when provided signal times out', async function () {
+    it('Stops listening when signal is aborted', async function () {
       const cid = await heliaFs.addBytes(encoder.encode('hello world'))
       dialStub.returns(Promise.resolve({} as any))
-      const addPinResult = await remotePinner.addPin({
+      const finallySpy = sinonSandbox.spy()
+      const addPinResult = remotePinner.addPin({
         cid,
         name: 'queued-test2',
         signal: AbortSignal.timeout(100)
       })
-      expect(addPinResult.status).to.equal(Status.Queued)
+      addPinResult.finally(finallySpy)
+      expect(finallySpy.called).to.equal(false)
+      await expect(addPinResult).to.eventually.have.property('status', Status.Queued)
+      expect(finallySpy.called).to.equal(true)
     })
 
     it('Will not pin if provided an already aborted signal', async function () {
