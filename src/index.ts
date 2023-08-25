@@ -87,9 +87,8 @@ export class HeliaRemotePinner {
   }
 
   async addPin ({ cid, signal, ...otherArgs }: AddPinArgs): Promise<PinStatus> {
-    if (signal?.aborted === true) {
-      throw new Error('Signal was aborted prior to pinning')
-    }
+    signal?.throwIfAborted()
+
     const pinStatus = await this.remotePinningClient.pinsPost({
       pin: {
         ...otherArgs,
@@ -101,9 +100,8 @@ export class HeliaRemotePinner {
   }
 
   async replacePin ({ cid, requestid, signal, ...otherArgs }: ReplacePinArgs): Promise<PinStatus> {
-    if (signal?.aborted === true) {
-      throw new Error('Signal was aborted prior to pinning')
-    }
+    signal?.throwIfAborted()
+
     const pinStatus = await this.remotePinningClient.pinsRequestidPost({
       requestid,
       pin: {

@@ -122,7 +122,7 @@ describe('@helia/remote-pinning', function () {
         name: 'queued-test3',
         signal: abortController.signal
       })
-      await expect(preAbortedRequest).to.eventually.be.rejectedWith('Signal was aborted prior to pinning')
+      await expect(preAbortedRequest).to.eventually.be.rejected()
     })
 
     it('Returns FailedToConnectToDelegates when unable to connect to delegates', async function () {
@@ -202,7 +202,7 @@ describe('@helia/remote-pinning', function () {
         name: 'queued-test5-replaced',
         signal: abortController.signal
       })
-      await expect(preAbortedRequest).to.eventually.be.rejectedWith('Signal was aborted prior to pinning')
+      await expect(preAbortedRequest).to.eventually.be.rejected()
     })
   })
 })
