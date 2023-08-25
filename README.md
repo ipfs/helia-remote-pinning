@@ -55,14 +55,12 @@ const addPinResult = await remotePinner.addPin({
 ### Replace a pin
 
 ```typescript
-
 const newCid = await heliaFs.addBytes(encoder.encode('hi galaxy'))
 const replacePinResult = await remotePinner.replacePin({
   newCid,
   name: 'hiGalaxy',
   requestid: addPinResult.requestid
 })
-
 ```
 
 ## Lead Maintainer
