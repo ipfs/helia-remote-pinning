@@ -39,16 +39,16 @@ export class HeliaRemotePinner {
   }
 
   private async connectToDelegates (delegates: Set<string>, signal?: AbortSignal): Promise<void> {
-    let successfulDials = 0
     try {
-      for (const delegate of delegates) {
-        await this.heliaInstance.libp2p.dial(multiaddr(delegate), { signal })
-        successfulDials++
-      }
+      await Promise.any([...delegates].map(async delegate => {
+        try {
+          await this.heliaInstance.libp2p.dial(multiaddr(delegate), { signal })
+        } catch (e) {
+          log.error(e)
+          throw e
+        }
+      }))
     } catch (e) {
-      log.error(e)
-    }
-    if (successfulDials === 0) {
       throw new FailedToConnectToDelegates('Failed to connect to any delegates')
     }
   }
