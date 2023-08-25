@@ -8,7 +8,7 @@ import type { CID } from 'multiformats/cid'
 
 const log = logger('helia:remote-pinning')
 
-export interface HeliaRemotePinningOptions {
+interface HeliaRemotePinningOptions {
   /**
    * Control whether requests are aborted or not by manually aborting a signal or using AbortSignal.timeout()
    */
