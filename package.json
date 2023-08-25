@@ -117,6 +117,8 @@
   },
   "scripts": {
     "clean": "aegir clean",
+    "lint": "aegir lint",
+    "lint:fix": "aegir lint -- --fix",
     "test": "aegir test",
     "test:chrome": "aegir test -t browser --cov",
     "test:chrome-webworker": "aegir test -t webworker",
@@ -125,6 +127,7 @@
     "test:node": "aegir test -t node --cov",
     "test:electron-main": "aegir test -t electron-main",
     "cov:report": "nyc report -t .coverage",
+    "prebuild": "npm run lint",
     "build": "aegir build"
   },
   "devDependencies": {
