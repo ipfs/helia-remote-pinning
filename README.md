@@ -52,8 +52,6 @@ const addPinResult = await remotePinner.addPin({
   name: 'helloWorld'
 })
 ```
-
-
 ### Replace a pin
 
 ```typescript
