@@ -1,14 +1,14 @@
 import { type RemotePinningServiceClient, type Pin, type PinStatus, type PinsRequestidPostRequest, Status } from '@ipfs-shipyard/pinning-service-client'
 import { logger } from '@libp2p/logger'
 import { multiaddr } from '@multiformats/multiaddr'
-import pRetry from 'p-retry'
+import pRetry, { type Options as pRetryOptions } from 'p-retry'
 import { FailedToConnectToDelegates } from './errors.js'
 import type { Helia } from '@helia/interface'
 import type { CID } from 'multiformats/cid'
 
 const log = logger('helia:remote-pinning')
 
-interface HeliaRemotePinningOptions {
+interface HeliaRemotePinningMethodOptions {
   /**
    * Control whether requests are aborted or not by manually aborting a signal or using AbortSignal.timeout()
    */
@@ -20,12 +20,28 @@ interface HeliaRemotePinningOptions {
   cid: CID
 }
 
-export interface AddPinArgs extends Omit<Pin, 'cid'>, HeliaRemotePinningOptions {}
+export interface AddPinArgs extends Omit<Pin, 'cid'>, HeliaRemotePinningMethodOptions {}
 
-export interface ReplacePinArgs extends Omit<PinsRequestidPostRequest, 'pin'>, Omit<Pin, 'cid'>, HeliaRemotePinningOptions {}
+export interface ReplacePinArgs extends Omit<PinsRequestidPostRequest, 'pin'>, Omit<Pin, 'cid'>, HeliaRemotePinningMethodOptions {}
+
+export interface HeliaRemotePinnerConfig {
+  /**
+   * pRetry options when waiting for pinning to complete/fail in {@link handlePinStatus}
+   *
+   * @default { retries: 10 }
+   */
+  retryOptions?: pRetryOptions
+}
 
 export class HeliaRemotePinner {
-  constructor (private readonly heliaInstance: Helia, private readonly remotePinningClient: RemotePinningServiceClient) {
+  private readonly config: Required<HeliaRemotePinnerConfig>
+  constructor (private readonly heliaInstance: Helia, private readonly remotePinningClient: RemotePinningServiceClient, config?: HeliaRemotePinnerConfig) {
+    this.config = {
+      retryOptions: {
+        retries: 10,
+        ...config?.retryOptions
+      }
+    }
   }
 
   private async getOrigins (otherOrigins: Pin['origins']): Promise<Set<string>> {
@@ -74,8 +90,8 @@ export class HeliaRemotePinner {
         }
         throw new Error(`Pin status is ${pinStatus.status}`)
       }, {
-        retries: 10,
-        signal
+        signal,
+        ...this.config?.retryOptions
       })
     } catch (e) {
       log.error(e)
@@ -116,6 +132,6 @@ export class HeliaRemotePinner {
   }
 }
 
-export function createRemotePinner (heliaInstance: Helia, remotePinningClient: RemotePinningServiceClient): HeliaRemotePinner {
-  return new HeliaRemotePinner(heliaInstance, remotePinningClient)
+export function createRemotePinner (heliaInstance: Helia, remotePinningClient: RemotePinningServiceClient, config?: HeliaRemotePinnerConfig): HeliaRemotePinner {
+  return new HeliaRemotePinner(heliaInstance, remotePinningClient, config)
 }
