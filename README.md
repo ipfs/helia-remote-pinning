@@ -30,7 +30,7 @@ $ npm i @helia/remote-pinning
 import { unixfs } from '@helia/unixfs'
 import { Configuration, RemotePinningServiceClient } from '@ipfs-shipyard/pinning-service-client'
 import { createHelia } from 'helia'
-import { createRemotePinner } from '../src/index.js'
+import { createRemotePinner } from '@helia/remote-pinning'
 
 const helia = await createHelia()
 const pinServiceConfig = new Configuration({
