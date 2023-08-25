@@ -95,6 +95,8 @@ export class HeliaRemotePinner {
         cid: cid.toString(),
         origins: await this.getOrigins(otherArgs.origins)
       }
+    }, {
+      signal
     })
     return this.handlePinStatus(pinStatus, signal)
   }
@@ -109,6 +111,8 @@ export class HeliaRemotePinner {
         cid: cid.toString(),
         origins: await this.getOrigins(otherArgs.origins)
       }
+    }, {
+      signal
     })
     return this.handlePinStatus(pinStatus, signal)
   }
