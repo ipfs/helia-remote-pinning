@@ -30,6 +30,16 @@
       "sourceType": "module"
     }
   },
+  "exports": {
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "import": "./dist/src/index.js"
+    },
+    "./errors": {
+      "types": "./dist/src/errors.d.ts",
+      "import": "./dist/src/errors.js"
+    }
+  },
   "release": {
     "branches": [
       "master"
