@@ -1,14 +1,12 @@
 import { type RemotePinningServiceClient, type Pin, type PinStatus, type PinsRequestidPostRequest, Status } from '@ipfs-shipyard/pinning-service-client'
+import { logger } from '@libp2p/logger'
 import { multiaddr } from '@multiformats/multiaddr'
-import debug from 'debug'
 import pRetry from 'p-retry'
 import { FailedToConnectToDelegates } from './errors.js'
 import type { Helia } from '@helia/interface'
 import type { CID } from 'multiformats/cid'
 
-const log = debug('helia-remote-pinning')
-const logError = log.extend('error')
-const logTrace = log.extend('trace')
+const log = logger('helia:remote-pinning')
 
 export interface HeliaRemotePinningOptions {
   /**
@@ -48,7 +46,7 @@ export class HeliaRemotePinner {
         successfulDials++
       }
     } catch (e) {
-      logError(e)
+      log.error(e)
     }
     if (successfulDials === 0) {
       throw new FailedToConnectToDelegates('Failed to connect to any delegates')
@@ -69,7 +67,7 @@ export class HeliaRemotePinner {
      */
     try {
       await pRetry(async (attemptNum) => {
-        logTrace('attempt #%d waiting for pinStatus of "pinned" or "failed"', attemptNum)
+        log.trace('attempt #%d waiting for pinStatus of "pinned" or "failed"', attemptNum)
         updatedPinStatus = await this.remotePinningClient.pinsRequestidGet({ requestid: pinStatus.requestid })
         if ([Status.Pinned, Status.Failed].includes(pinStatus.status)) {
           return updatedPinStatus
@@ -80,7 +78,7 @@ export class HeliaRemotePinner {
         signal
       })
     } catch (e) {
-      logError(e)
+      log.error(e)
     }
 
     return updatedPinStatus
