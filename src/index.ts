@@ -116,6 +116,6 @@ export class HeliaRemotePinner {
   }
 }
 
-export function createRemotePinner (heliaInstance: Helia, remotePinningClient: RemotePinningServiceClient, options?: HeliaRemotePinningOptions): HeliaRemotePinner {
+export function createRemotePinner (heliaInstance: Helia, remotePinningClient: RemotePinningServiceClient): HeliaRemotePinner {
   return new HeliaRemotePinner(heliaInstance, remotePinningClient)
 }
