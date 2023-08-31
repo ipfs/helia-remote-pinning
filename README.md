@@ -10,7 +10,11 @@
 ## Table of contents <!-- omit in toc -->
 
 - [Install](#install)
+  - [Browser `<script>` tag](#browser-script-tag)
 - [Documentation](#documentation)
+  - [Create remote pinner](#create-remote-pinner)
+  - [Add a pin](#add-a-pin)
+  - [Replace a pin](#replace-a-pin)
 - [Lead Maintainer](#lead-maintainer)
 - [Contributing](#contributing)
 - [License](#license)
@@ -20,6 +24,14 @@
 
 ```console
 $ npm i @helia/remote-pinning
+```
+
+### Browser `<script>` tag
+
+Loading this module through a script tag will make it's exports available as `HeliaRemotePinning` in the global namespace.
+
+```html
+<script src="https://unpkg.com/@helia/remote-pinning/dist/index.min.js"></script>
 ```
 
 ## Documentation
@@ -52,6 +64,7 @@ const addPinResult = await remotePinner.addPin({
   name: 'helloWorld'
 })
 ```
+
 ### Replace a pin
 
 ```typescript
