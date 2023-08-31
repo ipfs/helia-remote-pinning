@@ -42,7 +42,7 @@
   },
   "release": {
     "branches": [
-      "master"
+      "main"
     ],
     "plugins": [
       [
@@ -138,7 +138,8 @@
     "test:electron-main": "aegir test -t electron-main",
     "cov:report": "nyc report -t .coverage",
     "prebuild": "npm run lint",
-    "build": "aegir build"
+    "build": "aegir build",
+    "release": "aegir release"
   },
   "devDependencies": {
     "@helia/interface": "^1.2.2",
