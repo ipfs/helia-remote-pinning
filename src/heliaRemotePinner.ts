@@ -44,7 +44,7 @@ export class HeliaRemotePinner {
     }
   }
 
-  private async getOrigins (otherOrigins: Pin['origins']): Promise<Set<string>> {
+  private getOrigins (otherOrigins: Pin['origins']): Set<string> {
     const origins = new Set(this.heliaInstance.libp2p.getMultiaddrs().map(multiaddr => multiaddr.toString()))
     if (otherOrigins != null) {
       for (const origin of otherOrigins) {
@@ -107,7 +107,8 @@ export class HeliaRemotePinner {
       pin: {
         ...otherArgs,
         cid: cid.toString(),
-        origins: await this.getOrigins(otherArgs.origins)
+        // @ts-expect-error - broken types: origins needs to be an array of strings
+        origins: [...this.getOrigins(otherArgs.origins)].filter((_, i) => i < 20) // web3.storage will only accept 20 origins
       }
     }, {
       signal
@@ -123,7 +124,8 @@ export class HeliaRemotePinner {
       pin: {
         ...otherArgs,
         cid: cid.toString(),
-        origins: await this.getOrigins(otherArgs.origins)
+        // @ts-expect-error - broken types: origins needs to be an array of strings
+        origins: [...this.getOrigins(otherArgs.origins)].filter((_, i) => i < 20) // web3.storage will only accept 20 origins
       }
     }, {
       signal
