@@ -1,6 +1,6 @@
 {
   "name": "@helia/remote-pinning",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A library that helps Helia users pin content via the IPFS pinning-services-api-spec",
   "author": "SgtPooki@protocol.ai",
   "license": "Apache-2.0 OR MIT",

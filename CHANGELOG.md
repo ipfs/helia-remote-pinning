@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/ipfs/helia-remote-pinning/compare/v1.1.0...v1.1.1) (2023-09-06)
+
+
+### Bug Fixes
+
+* allow handlePinStatus to continue if delegate dials fail ([784b763](https://github.com/ipfs/helia-remote-pinning/commit/784b7630054a69549184e3218feea32f835c86fe))
+
 ## [1.1.0](https://github.com/ipfs/helia-remote-pinning/compare/v1.0.0...v1.1.0) (2023-09-06)
 
 
