@@ -1,3 +1,22 @@
+## [1.1.0](https://github.com/ipfs/helia-remote-pinning/compare/v1.0.0...v1.1.0) (2023-09-06)
+
+
+### Features
+
+* filter multiaddrs for origins ([caffdbf](https://github.com/ipfs/helia-remote-pinning/commit/caffdbf759fac3e36ad3700f9093b05eeaca09ea))
+
+
+### Bug Fixes
+
+* origins when using web3.storage ([654ddfa](https://github.com/ipfs/helia-remote-pinning/commit/654ddfa0e8187f9d682e7219e6d9cca8710120f9))
+
+
+### Trivial Changes
+
+* configure publishConfig and aegir check-project ([156539d](https://github.com/ipfs/helia-remote-pinning/commit/156539d129ca1b81f7fe5f86c23c7f14db52080a))
+* configure publishConfig and aegir check-project ([1fb7c39](https://github.com/ipfs/helia-remote-pinning/commit/1fb7c392f00c9b525d69a7d6d40b45b9161d7b9b))
+* update .github/workflows/js-test-and-release.yml ([#11](https://github.com/ipfs/helia-remote-pinning/issues/11)) ([a9888e3](https://github.com/ipfs/helia-remote-pinning/commit/a9888e3012692181e71b0ff92308ef04ce08e412))
+
 ## 1.0.0 (2023-08-31)
 
 
