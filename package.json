@@ -159,17 +159,17 @@
   },
   "dependencies": {
     "@libp2p/logger": "^3.0.2",
-    "@multiformats/multiaddr": "^12.1.6",
+    "@multiformats/multiaddr": "^12.1.7",
     "@multiformats/multiaddr-matcher": "^1.0.1",
-    "multiformats": "^12.0.1",
+    "multiformats": "^12.1.1",
     "p-retry": "^6.0.0"
   },
   "devDependencies": {
-    "@helia/interface": "^1.2.2",
+    "@helia/interface": "^2.0.0",
     "@helia/unixfs": "^1.4.1",
     "@ipfs-shipyard/pinning-service-client": "^1.0.3",
     "@types/express": "^4.17.17",
-    "aegir": "^40.0.9",
+    "aegir": "^40.0.12",
     "get-port": "^7.0.0",
     "mock-ipfs-pinning-service": "^0.4.2",
     "nyc": "^15.1.0",

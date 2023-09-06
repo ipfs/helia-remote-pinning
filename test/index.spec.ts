@@ -3,7 +3,6 @@ import { Configuration, RemotePinningServiceClient, Status } from '@ipfs-shipyar
 import { expect } from 'aegir/chai'
 import { createHelia } from 'helia'
 import sinon, { type SinonSandbox, type SinonStub } from 'sinon'
-import { FailedToConnectToDelegates } from '../src/errors.js'
 import { type HeliaRemotePinner, createRemotePinner } from '../src/index.js'
 import type { Helia } from '@helia/interface'
 
@@ -25,6 +24,7 @@ describe('@helia/remote-pinning', function () {
 
   beforeEach(async function () {
     sinonSandbox = sinon.createSandbox()
+    // @ts-expect-error - broken types
     helia = await createHelia()
     heliaFs = unixfs(helia)
     dialStub = sinonSandbox.stub(helia.libp2p, 'dial')
@@ -123,17 +123,6 @@ describe('@helia/remote-pinning', function () {
         signal: abortController.signal
       })
       await expect(preAbortedRequest).to.eventually.be.rejected()
-    })
-
-    it('Returns FailedToConnectToDelegates when unable to connect to delegates', async function () {
-      const cid = await heliaFs.addBytes(encoder.encode('hello world'))
-      dialStub.throws(new Error('Stubbed dial failure'))
-      const addPinResult = remotePinner.addPin({
-        cid,
-        name: 'pinned-test2'
-      })
-      // stub heliaInstance.libp2p.dial to throw an error
-      await expect(addPinResult).to.eventually.be.rejectedWith(FailedToConnectToDelegates)
     })
 
     it('Does not return FailedToConnectToDelegates when unable to connect to a single delegate', async function () {

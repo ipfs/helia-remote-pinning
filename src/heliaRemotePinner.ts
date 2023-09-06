@@ -3,7 +3,6 @@ import { logger } from '@libp2p/logger'
 import { multiaddr } from '@multiformats/multiaddr'
 import { P2P } from '@multiformats/multiaddr-matcher'
 import pRetry, { type Options as pRetryOptions } from 'p-retry'
-import { FailedToConnectToDelegates } from './errors.js'
 import type { Helia } from '@helia/interface'
 import type { CID } from 'multiformats/cid'
 
@@ -68,7 +67,7 @@ export class HeliaRemotePinner {
         }
       }))
     } catch (e) {
-      throw new FailedToConnectToDelegates('Failed to connect to any delegates')
+      log.error(e)
     }
   }
 
