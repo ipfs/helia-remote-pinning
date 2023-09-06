@@ -1,6 +1,7 @@
 import { type RemotePinningServiceClient, type Pin, type PinStatus, type PinsRequestidPostRequest, Status } from '@ipfs-shipyard/pinning-service-client'
 import { logger } from '@libp2p/logger'
 import { multiaddr } from '@multiformats/multiaddr'
+import { P2P } from '@multiformats/multiaddr-matcher'
 import pRetry, { type Options as pRetryOptions } from 'p-retry'
 import { FailedToConnectToDelegates } from './errors.js'
 import type { Helia } from '@helia/interface'
@@ -45,7 +46,9 @@ export class HeliaRemotePinner {
   }
 
   private getOrigins (otherOrigins: Pin['origins']): Set<string> {
-    const origins = new Set(this.heliaInstance.libp2p.getMultiaddrs().map(multiaddr => multiaddr.toString()))
+    const multiaddrs = this.heliaInstance.libp2p.getMultiaddrs().filter(multiaddr => P2P.matches(multiaddr))
+    const origins = new Set(multiaddrs.map(multiaddr => multiaddr.toString()))
+
     if (otherOrigins != null) {
       for (const origin of otherOrigins) {
         origins.add(origin)
