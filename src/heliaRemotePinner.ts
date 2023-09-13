@@ -31,12 +31,41 @@ export interface HeliaRemotePinnerConfig {
    * @default { retries: 10 }
    */
   retryOptions?: pRetryOptions
+
+  /**
+   * Whether to merge the origins from the libp2p node with the provided origins.
+   * If false, it will only use the provided origins.
+   * If false and no origins are provided, it will use the libp2p node's multiaddrs.
+   * If true and no origins are provided, it will use the libp2p node's multiaddrs.
+   * If true and origins are provided, it will merge the libp2p node's multiaddrs and the provided origins.
+   *
+   * @default false
+   */
+  mergeOrigins?: boolean
+
+  /**
+   * A function to filter the origins that the pinning provider can use to retrieve the content.
+   * You can use this to filter out multiaddrs that aren't dialable by the pinning provider.
+   * This method will only filter out the origins obtained from the libp2p node, not the provided origins.
+   * For example, if you are using a remote pinning service that only supports TCP, you can filter out the multiaddrs that use UDP.
+   *
+   * @default (origins) => origins
+   */
+  filterOrigins?: (origins: string[]) => string[]
+
+  /**
+   * A function to filter the delegates that the pinning provider expects us to connect to, before we connect to them.
+   *
+   * @default (delegates) => delegates
+   */
+  filterDelegates?: (delegates: string[]) => string[]
 }
 
 export class HeliaRemotePinner {
-  private readonly config: Required<HeliaRemotePinnerConfig>
+  private readonly config: Pick<Required<HeliaRemotePinnerConfig>, 'mergeOrigins' | 'retryOptions'> & HeliaRemotePinnerConfig
   constructor (private readonly heliaInstance: Helia, private readonly remotePinningClient: RemotePinningServiceClient, config?: HeliaRemotePinnerConfig) {
     this.config = {
+      mergeOrigins: config?.mergeOrigins ?? false,
       retryOptions: {
         retries: 10,
         ...config?.retryOptions
@@ -44,21 +73,30 @@ export class HeliaRemotePinner {
     }
   }
 
-  private getOrigins (otherOrigins: Pin['origins']): Set<string> {
-    const multiaddrs = this.heliaInstance.libp2p.getMultiaddrs().filter(multiaddr => P2P.matches(multiaddr))
-    const origins = new Set(multiaddrs.map(multiaddr => multiaddr.toString()))
-
-    if (otherOrigins != null) {
-      for (const origin of otherOrigins) {
-        origins.add(origin)
-      }
+  /**
+   * This method is used to get the origins that the pinning provider can use to retrieve the content.
+   * If passed origins, it will use those origins. Otherwise, it will use the libp2p multiaddrs.
+   * If mergeOrigins is true, it will merge the origins from the libp2p node with the provided origins.
+   *
+   * @param providedOrigins - provided origins
+   * @returns
+   */
+  private getOrigins (providedOrigins: Pin['origins'] = new Set()): string[] {
+    if (providedOrigins.size > 0 && !this.config.mergeOrigins) {
+      return [...providedOrigins]
     }
-    return origins
+    const multiaddrs = this.heliaInstance.libp2p.getMultiaddrs().filter(multiaddr => P2P.matches(multiaddr))
+    const nodeOrigins = multiaddrs.map(multiaddr => multiaddr.toString())
+    const filteredOrigins = this.config.filterOrigins?.(nodeOrigins) ?? nodeOrigins
+    const origins = new Set([...providedOrigins, ...filteredOrigins])
+
+    return [...origins]
   }
 
   private async connectToDelegates (delegates: Set<string>, signal?: AbortSignal): Promise<void> {
     try {
-      await Promise.any([...delegates].map(async delegate => {
+      const filteredDelegates = this.config.filterDelegates?.([...delegates]) ?? [...delegates]
+      await Promise.any(filteredDelegates.map(async delegate => {
         try {
           await this.heliaInstance.libp2p.dial(multiaddr(delegate), { signal })
         } catch (e) {
@@ -110,7 +148,7 @@ export class HeliaRemotePinner {
         ...otherArgs,
         cid: cid.toString(),
         // @ts-expect-error - broken types: origins needs to be an array of strings
-        origins: [...this.getOrigins(otherArgs.origins)].filter((_, i) => i < 20) // web3.storage will only accept 20 origins
+        origins: this.getOrigins(otherArgs.origins)
       }
     }, {
       signal
@@ -127,7 +165,7 @@ export class HeliaRemotePinner {
         ...otherArgs,
         cid: cid.toString(),
         // @ts-expect-error - broken types: origins needs to be an array of strings
-        origins: [...this.getOrigins(otherArgs.origins)].filter((_, i) => i < 20) // web3.storage will only accept 20 origins
+        origins: this.getOrigins(otherArgs.origins)
       }
     }, {
       signal
