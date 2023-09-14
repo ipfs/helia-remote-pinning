@@ -173,7 +173,7 @@
     "get-port": "^7.0.0",
     "mock-ipfs-pinning-service": "^0.4.2",
     "nyc": "^15.1.0",
-    "sinon": "^15.2.0"
+    "sinon": "^16.0.0"
   },
   "peerDependencies": {
     "@ipfs-shipyard/pinning-service-client": "^1.0.3",
