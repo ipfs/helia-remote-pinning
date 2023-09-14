@@ -141,16 +141,20 @@ export class HeliaRemotePinner {
     return updatedPinStatus
   }
 
+  #getPinArg ({ cid, ...otherArgs }: Omit<Pin, 'cid'> & { cid: CID }): Pin {
+    return {
+      ...otherArgs,
+      cid: cid.toString(),
+      // @ts-expect-error - broken types: origins needs to be an array of strings
+      origins: this.getOrigins(otherArgs.origins)
+    }
+  }
+
   async addPin ({ cid, signal, ...otherArgs }: AddPinArgs): Promise<PinStatus> {
     signal?.throwIfAborted()
 
     const pinStatus = await this.remotePinningClient.pinsPost({
-      pin: {
-        ...otherArgs,
-        cid: cid.toString(),
-        // @ts-expect-error - broken types: origins needs to be an array of strings
-        origins: this.getOrigins(otherArgs.origins)
-      }
+      pin: this.#getPinArg({ cid, ...otherArgs })
     }, {
       signal
     })
@@ -162,12 +166,7 @@ export class HeliaRemotePinner {
 
     const pinStatus = await this.remotePinningClient.pinsRequestidPost({
       requestid,
-      pin: {
-        ...otherArgs,
-        cid: cid.toString(),
-        // @ts-expect-error - broken types: origins needs to be an array of strings
-        origins: this.getOrigins(otherArgs.origins)
-      }
+      pin: this.#getPinArg({ cid, ...otherArgs })
     }, {
       signal
     })
