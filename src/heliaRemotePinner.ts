@@ -65,6 +65,7 @@ export class HeliaRemotePinner {
   private readonly config: Pick<Required<HeliaRemotePinnerConfig>, 'mergeOrigins' | 'retryOptions'> & HeliaRemotePinnerConfig
   constructor (private readonly heliaInstance: Helia, private readonly remotePinningClient: RemotePinningServiceClient, config?: HeliaRemotePinnerConfig) {
     this.config = {
+      ...config,
       mergeOrigins: config?.mergeOrigins ?? false,
       retryOptions: {
         retries: 10,
