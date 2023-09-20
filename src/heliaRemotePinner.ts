@@ -1,7 +1,6 @@
 import { type RemotePinningServiceClient, type Pin, type PinStatus, type PinsRequestidPostRequest, Status } from '@ipfs-shipyard/pinning-service-client'
 import { logger } from '@libp2p/logger'
-import { multiaddr } from '@multiformats/multiaddr'
-import { P2P } from '@multiformats/multiaddr-matcher'
+import { multiaddr, type Multiaddr } from '@multiformats/multiaddr'
 import pRetry, { type Options as pRetryOptions } from 'p-retry'
 import type { Helia } from '@helia/interface'
 import type { CID } from 'multiformats/cid'
@@ -18,11 +17,16 @@ interface HeliaRemotePinningMethodOptions {
    * The CID instance to pin. When using Helia, passing around the CID object is preferred over the string.
    */
   cid: CID
+
+  /**
+   * The multiaddrs that the pinning provider can use to retrieve the content.
+   */
+  origins?: Multiaddr[]
 }
 
-export interface AddPinArgs extends Omit<Pin, 'cid'>, HeliaRemotePinningMethodOptions {}
+export interface AddPinArgs extends Omit<Pin, 'cid' | 'origins'>, HeliaRemotePinningMethodOptions {}
 
-export interface ReplacePinArgs extends Omit<PinsRequestidPostRequest, 'pin'>, Omit<Pin, 'cid'>, HeliaRemotePinningMethodOptions {}
+export interface ReplacePinArgs extends Omit<PinsRequestidPostRequest, 'pin'>, Omit<Pin, 'cid' | 'origins'>, HeliaRemotePinningMethodOptions {}
 
 export interface HeliaRemotePinnerConfig {
   /**
@@ -51,7 +55,7 @@ export interface HeliaRemotePinnerConfig {
    *
    * @default (origins) => origins
    */
-  filterOrigins?: (origins: string[]) => string[]
+  filterOrigins?: (origins: Multiaddr[]) => Multiaddr[]
 
   /**
    * A function to filter the delegates that the pinning provider expects us to connect to, before we connect to them.
@@ -82,14 +86,12 @@ export class HeliaRemotePinner {
    * @param providedOrigins - provided origins
    * @returns
    */
-  private getOrigins (providedOrigins: Pin['origins'] = new Set()): string[] {
-    if (providedOrigins.size > 0 && !this.config.mergeOrigins) {
-      return [...providedOrigins]
+  private getOrigins (providedOrigins: Multiaddr[] = []): Multiaddr[] {
+    if (providedOrigins.length > 0 && !this.config.mergeOrigins) {
+      return providedOrigins
     }
-    const multiaddrs = this.heliaInstance.libp2p.getMultiaddrs().filter(multiaddr => P2P.matches(multiaddr))
-    const nodeOrigins = multiaddrs.map(multiaddr => multiaddr.toString())
-    const filteredOrigins = this.config.filterOrigins?.(nodeOrigins) ?? nodeOrigins
-    const origins = new Set([...providedOrigins, ...filteredOrigins])
+    const multiaddrs = this.heliaInstance.libp2p.getMultiaddrs()
+    const origins = new Set([...providedOrigins, ...multiaddrs])
 
     return [...origins]
   }
@@ -101,12 +103,12 @@ export class HeliaRemotePinner {
         try {
           await this.heliaInstance.libp2p.dial(multiaddr(delegate), { signal })
         } catch (e) {
-          log.error(e)
+          log.error('Failed to connect to delegate %s', delegate, e)
           throw e
         }
       }))
     } catch (e) {
-      log.error(e)
+      log.error('Failed to connect to any delegates', e)
     }
   }
 
@@ -124,8 +126,8 @@ export class HeliaRemotePinner {
      */
     try {
       await pRetry(async (attemptNum) => {
-        log.trace('attempt #%d waiting for pinStatus of "pinned" or "failed"', attemptNum)
         updatedPinStatus = await this.remotePinningClient.pinsRequestidGet({ requestid: pinStatus.requestid })
+        log.trace('attempt #%d pinStatus: %s', attemptNum, updatedPinStatus.status)
         if ([Status.Pinned, Status.Failed].includes(pinStatus.status)) {
           return updatedPinStatus
         }
@@ -137,16 +139,20 @@ export class HeliaRemotePinner {
     } catch (e) {
       log.error(e)
     }
+    log.trace('final pinStatus: %s', updatedPinStatus.status)
 
     return updatedPinStatus
   }
 
-  #getPinArg ({ cid, ...otherArgs }: Omit<Pin, 'cid'> & { cid: CID }): Pin {
+  #getPinArg ({ cid, ...otherArgs }: Omit<Pin, 'cid' | 'origins'> & { cid: CID, origins?: Multiaddr[] }): Pin {
+    const origins = this.getOrigins(otherArgs.origins)
+    const filteredOrigins = this.config.filterOrigins?.(origins) ?? origins
+
     return {
       ...otherArgs,
       cid: cid.toString(),
       // @ts-expect-error - broken types: origins needs to be an array of strings
-      origins: this.getOrigins(otherArgs.origins)
+      origins: filteredOrigins.length > 0 ? filteredOrigins.map(ma => ma.toString()) : undefined
     }
   }
 
@@ -158,6 +164,7 @@ export class HeliaRemotePinner {
     }, {
       signal
     })
+    log.trace('Initial pinsPost made, status: %s', pinStatus.status)
     return this.handlePinStatus(pinStatus, signal)
   }
 
@@ -170,6 +177,7 @@ export class HeliaRemotePinner {
     }, {
       signal
     })
+    log.trace('Initial pinReplace made, status: %s', pinStatus.status)
     return this.handlePinStatus(pinStatus, signal)
   }
 }
