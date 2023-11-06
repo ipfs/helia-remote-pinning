@@ -169,7 +169,7 @@
     "@helia/unixfs": "^1.4.1",
     "@ipfs-shipyard/pinning-service-client": "^1.0.3",
     "@types/express": "^4.17.17",
-    "aegir": "^40.0.12",
+    "aegir": "^41.1.9",
     "get-port": "^7.0.0",
     "mock-ipfs-pinning-service": "^0.4.2",
     "nyc": "^15.1.0",
