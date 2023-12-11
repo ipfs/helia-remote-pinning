@@ -158,7 +158,7 @@
     "release": "aegir release"
   },
   "dependencies": {
-    "@libp2p/logger": "^3.0.2",
+    "@libp2p/logger": "^4.0.2",
     "@multiformats/multiaddr": "^12.1.7",
     "@multiformats/multiaddr-matcher": "^1.0.1",
     "multiformats": "^12.1.1",
