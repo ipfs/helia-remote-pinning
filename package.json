@@ -155,7 +155,9 @@
     "cov:report": "nyc report -t .coverage",
     "prebuild": "npm run lint",
     "build": "aegir build",
-    "release": "aegir release"
+    "dep-check": "aegir dep-check",
+    "release": "aegir release",
+    "release:rc": "aegir release-rc"
   },
   "dependencies": {
     "@libp2p/logger": "^4.0.6",

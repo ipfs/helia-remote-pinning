@@ -1,0 +1,15 @@
+{
+  "bootstrap-sha": "151f149184539be999d20985afd04b45d4d2ffd9",
+  "release-type": "node",
+  "plugins": ["node-workspace"],
+  "changelog-sections": [
+    { "type": "feat", "section": "Features", "hidden": false },
+    { "type": "fix", "section": "Bug Fixes", "hidden": false },
+    { "type": "docs", "section": "Documentation", "hidden": false },
+    { "type": "deps", "section": "Dependencies", "hidden": false },
+    { "type": "refactor", "section": "Refactors", "hidden": false }
+  ],
+  "packages": {
+    ".": {}
+  }
+}
