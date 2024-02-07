@@ -25,7 +25,6 @@ describe('@helia/remote-pinning', function () {
 
   beforeEach(async function () {
     sinonSandbox = sinon.createSandbox()
-    // @ts-expect-error - broken types
     helia = await createHelia()
     heliaFs = unixfs(helia)
     dialStub = sinonSandbox.stub(helia.libp2p, 'dial')
