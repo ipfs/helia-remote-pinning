@@ -1,5 +1,6 @@
 import { unixfs, type UnixFS } from '@helia/unixfs'
 import { Configuration, RemotePinningServiceClient, Status } from '@ipfs-shipyard/pinning-service-client'
+import { multiaddr } from '@multiformats/multiaddr'
 import { expect } from 'aegir/chai'
 import { createHelia } from 'helia'
 import sinon, { type SinonSandbox, type SinonStub } from 'sinon'
@@ -143,7 +144,7 @@ describe('@helia/remote-pinning', function () {
       const addPinResult = await remotePinner.addPin({
         cid,
         name: 'pinned-test4',
-        origins: new Set(['http://localhost:4444'])
+        origins: [multiaddr('/ip4/127.0.0.1/tcp/4001')]
       })
       expect(addPinResult.status).to.equal(Status.Pinned)
     })
