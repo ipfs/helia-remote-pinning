@@ -1,6 +1,6 @@
 import { HeliaRemotePinner, type HeliaRemotePinnerConfig } from './heliaRemotePinner.js'
-import type { Helia } from '@helia/interface'
 import type { RemotePinningServiceClient } from '@ipfs-shipyard/pinning-service-client'
+import type { Helia } from 'helia'
 
 export type { HeliaRemotePinner, HeliaRemotePinnerConfig } from './heliaRemotePinner.js'
 

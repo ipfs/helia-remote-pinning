@@ -2,10 +2,9 @@ import { unixfs, type UnixFS } from '@helia/unixfs'
 import { Configuration, RemotePinningServiceClient, Status } from '@ipfs-shipyard/pinning-service-client'
 import { multiaddr } from '@multiformats/multiaddr'
 import { expect } from 'aegir/chai'
-import { createHelia } from 'helia'
+import { createHelia, type Helia } from 'helia'
 import sinon, { type SinonSandbox, type SinonStub } from 'sinon'
 import { type HeliaRemotePinner, createRemotePinner } from '../src/index.js'
-import type { Helia } from '@helia/interface'
 
 const encoder = new TextEncoder()
 
