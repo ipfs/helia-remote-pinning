@@ -1,3 +1,34 @@
+## [1.2.0](https://github.com/ipfs/helia-remote-pinning/compare/v1.1.1...v1.2.0) (2024-02-07)
+
+
+### Features
+
+* filter origins & delegates ([d7e6385](https://github.com/ipfs/helia-remote-pinning/commit/d7e638580b0046b36c3097b83e67cc3c31ae76e4))
+
+
+### Bug Fixes
+
+* address some edge-cases ([758a4dd](https://github.com/ipfs/helia-remote-pinning/commit/758a4ddf26b2317e000b9bf88b6af01b0b1ca505))
+* use common function for pin argument ([fec7a8a](https://github.com/ipfs/helia-remote-pinning/commit/fec7a8ab4e6f36bd1c51229bca0b9f0669b86311))
+* user config should be set on this.config ([f0bf463](https://github.com/ipfs/helia-remote-pinning/commit/f0bf463f5656c7dc0c56af65e776a0b19f9dc818))
+
+
+### Trivial Changes
+
+* lint fix, interface fn shorthand ([26608c2](https://github.com/ipfs/helia-remote-pinning/commit/26608c28125390386dbedc86490474f62bbcdcda))
+* package.json script cleanup ([518aef2](https://github.com/ipfs/helia-remote-pinning/commit/518aef221f1d79a312d3914e095268e5bbad5831))
+* release main ([#44](https://github.com/ipfs/helia-remote-pinning/issues/44)) ([c829a70](https://github.com/ipfs/helia-remote-pinning/commit/c829a70f54f47559dac14ffa72d34e85dab41da5))
+* release please and update CI ([f094c42](https://github.com/ipfs/helia-remote-pinning/commit/f094c42e47f52906e8471447ebe18d694c0085c5))
+* Update .github/pull_request_template.md [skip ci] ([e11819f](https://github.com/ipfs/helia-remote-pinning/commit/e11819f0e22c64bdeee0d3e3b1c2468fb7715958))
+* Update .github/workflows/stale.yml [skip ci] ([be9f6dd](https://github.com/ipfs/helia-remote-pinning/commit/be9f6dd0800429a5e338b9c6dc551a7a39ddd9ae))
+* update helia, other deps; remove unused ts-expect-error ([a3e3c78](https://github.com/ipfs/helia-remote-pinning/commit/a3e3c785f1f07ab955834df5ba50cdf50b63fd3c))
+
+
+### Dependencies
+
+* update deps ([72e9755](https://github.com/ipfs/helia-remote-pinning/commit/72e975500ad4bacc32a26251bbdf7a2a08519f2d))
+* update to latest deps ([#42](https://github.com/ipfs/helia-remote-pinning/issues/42)) ([4d9ad33](https://github.com/ipfs/helia-remote-pinning/commit/4d9ad331279f23fbcd001bf5469f3c5c9769c76d))
+
 ## [1.1.1](https://github.com/ipfs/helia-remote-pinning/compare/v1.1.0...v1.1.1) (2023-09-06)
 
 
