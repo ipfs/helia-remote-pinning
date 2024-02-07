@@ -3,7 +3,7 @@ import { logger } from '@libp2p/logger'
 import { multiaddr } from '@multiformats/multiaddr'
 import { P2P } from '@multiformats/multiaddr-matcher'
 import pRetry, { type Options as pRetryOptions } from 'p-retry'
-import type { Helia } from '@helia/interface'
+import type { Helia } from 'helia'
 import type { CID } from 'multiformats/cid'
 
 const log = logger('helia:remote-pinning')
