@@ -153,7 +153,6 @@
     "test:node": "aegir test -t node --cov",
     "test:electron-main": "aegir test -t electron-main",
     "cov:report": "nyc report -t .coverage",
-    "prebuild": "npm run lint",
     "build": "aegir build",
     "dep-check": "aegir dep-check",
     "release": "aegir release",
@@ -162,12 +161,10 @@
   "dependencies": {
     "@libp2p/logger": "^4.0.6",
     "@multiformats/multiaddr": "^12.1.14",
-    "@multiformats/multiaddr-matcher": "^1.1.2",
     "multiformats": "^13.0.1",
     "p-retry": "^6.2.0"
   },
   "devDependencies": {
-    "@helia/interface": "^4.0.0",
     "@helia/unixfs": "^3.0.0",
     "@ipfs-shipyard/pinning-service-client": "^1.0.3",
     "@types/express": "^4.17.21",
