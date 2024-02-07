@@ -55,14 +55,14 @@ export interface HeliaRemotePinnerConfig {
    *
    * @default (origins) => origins
    */
-  filterOrigins?: (origins: Multiaddr[]) => Multiaddr[]
+  filterOrigins?(origins: Multiaddr[]): Multiaddr[]
 
   /**
    * A function to filter the delegates that the pinning provider expects us to connect to, before we connect to them.
    *
    * @default (delegates) => delegates
    */
-  filterDelegates?: (delegates: string[]) => string[]
+  filterDelegates?(delegates: string[]): string[]
 }
 
 export class HeliaRemotePinner {
