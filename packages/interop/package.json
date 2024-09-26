@@ -1,0 +1,46 @@
+{
+  "name": "@helia/pinning-service-api-interop",
+  "version": "0.0.0",
+  "description": "Interop tests for the IPFS Pinning Service API client and server powered by Helia",
+  "license": "Apache-2.0 OR MIT",
+  "homepage": "https://github.com/ipfs/helia-remote-pinning/tree/main/packages/interop#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ipfs/helia-remote-pinning.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ipfs/helia-remote-pinning/issues"
+  },
+  "keywords": [
+    "IPFS"
+  ],
+  "type": "module",
+  "eslintConfig": {
+    "extends": "ipfs",
+    "parserOptions": {
+      "project": true,
+      "sourceType": "module"
+    }
+  },
+  "scripts": {
+    "clean": "aegir clean",
+    "lint": "aegir lint",
+    "dep-check": "aegir dep-check",
+    "build": "aegir build --bundle false",
+    "test": "aegir test -t node",
+    "test:node": "aegir test -t node --cov"
+  },
+  "devDependencies": {
+    "@helia/pinning-service-api-server": "~0.0.0",
+    "@helia/remote-pinning": "^1.0.0",
+    "aegir": "^44.1.2",
+    "execa": "^9.4.0",
+    "fastify": "^5.0.0",
+    "helia": "^5.0.0",
+    "it-all": "^3.0.6",
+    "it-drain": "^3.0.7",
+    "multiformats": "^13.3.0",
+    "nanoid": "^5.0.7"
+  },
+  "private": true
+}
