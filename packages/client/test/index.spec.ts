@@ -194,7 +194,8 @@ describe('@helia/remote-pinning', () => {
     })
 
     it('should list multiple pages of created pins', async function () {
-      this.timeout(120 * 1000)
+      // this is very slow in Firefox
+      this.timeout(540 * 1000)
 
       // pagination limit is 1000
       const pinCount = 1100
