@@ -171,7 +171,7 @@
     "aegir": "^42.2.3",
     "get-port": "^7.0.0",
     "mock-ipfs-pinning-service": "^0.4.2",
-    "nyc": "^15.1.0",
+    "nyc": "^17.1.0",
     "sinon": "^17.0.1"
   },
   "peerDependencies": {
