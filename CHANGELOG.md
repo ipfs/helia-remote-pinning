@@ -29,6 +29,56 @@
 * update deps ([72e9755](https://github.com/ipfs/helia-remote-pinning/commit/72e975500ad4bacc32a26251bbdf7a2a08519f2d))
 * update to latest deps ([#42](https://github.com/ipfs/helia-remote-pinning/issues/42)) ([4d9ad33](https://github.com/ipfs/helia-remote-pinning/commit/4d9ad331279f23fbcd001bf5469f3c5c9769c76d))
 
+## [1.2.0](https://github.com/ipfs/helia-remote-pinning/compare/remote-pinning-v1.1.1...remote-pinning-v1.2.0) (2024-10-08)
+
+
+### Features
+
+* create @helia/remote-pinner implementation ([1b8e29e](https://github.com/ipfs/helia-remote-pinning/commit/1b8e29e4ce397fcb40b958a2dcfb156d4fe29045))
+* create @helia/remote-pinner library ([7ee93a7](https://github.com/ipfs/helia-remote-pinning/commit/7ee93a7eba92bd257a787f113fb7dad7f15b7f23))
+* create @helia/remote-pinner library ([7ee93a7](https://github.com/ipfs/helia-remote-pinning/commit/7ee93a7eba92bd257a787f113fb7dad7f15b7f23))
+* filter multiaddrs for origins ([caffdbf](https://github.com/ipfs/helia-remote-pinning/commit/caffdbf759fac3e36ad3700f9093b05eeaca09ea))
+* filter origins & delegates ([d7e6385](https://github.com/ipfs/helia-remote-pinning/commit/d7e638580b0046b36c3097b83e67cc3c31ae76e4))
+* initial project setup ([24d3103](https://github.com/ipfs/helia-remote-pinning/commit/24d3103cccafb19ec2bd6d81a50ee0aeeef895bf))
+* pRetry logic can be overridden with config ([6c2fb6e](https://github.com/ipfs/helia-remote-pinning/commit/6c2fb6eb3701e0172fbcfb61bc9dea22d14a4685))
+
+
+### Bug Fixes
+
+* add error name to custom err ([5fe0bd9](https://github.com/ipfs/helia-remote-pinning/commit/5fe0bd98cbb3471e1e29bc1e756dd4a7a39845c2))
+* add release script and fix semantic-release ([d2003dd](https://github.com/ipfs/helia-remote-pinning/commit/d2003dd6ea1a2b9747729ae17a618c52da451dbd))
+* address some edge-cases ([758a4dd](https://github.com/ipfs/helia-remote-pinning/commit/758a4ddf26b2317e000b9bf88b6af01b0b1ca505))
+* allow handlePinStatus to continue if delegate dials fail ([784b763](https://github.com/ipfs/helia-remote-pinning/commit/784b7630054a69549184e3218feea32f835c86fe))
+* dial delegates in parallel ([25855da](https://github.com/ipfs/helia-remote-pinning/commit/25855da6dc95df2acfd157ced1d65dd007723dd4))
+* don't export HeliaRemotePinner class ([52d998b](https://github.com/ipfs/helia-remote-pinning/commit/52d998b4f3da5856f3eaced8474f547a368222fb))
+* fwd signal to remote pinner ([b85767a](https://github.com/ipfs/helia-remote-pinning/commit/b85767a1a69db3669cce2dd054062fbdac5e0d49))
+* origins when using web3.storage ([654ddfa](https://github.com/ipfs/helia-remote-pinning/commit/654ddfa0e8187f9d682e7219e6d9cca8710120f9))
+* use @libp2p/logger ([ebffb67](https://github.com/ipfs/helia-remote-pinning/commit/ebffb674af55af78bc7c867c561bf479251c7a86))
+* use common function for pin argument ([fec7a8a](https://github.com/ipfs/helia-remote-pinning/commit/fec7a8ab4e6f36bd1c51229bca0b9f0669b86311))
+* user config should be set on this.config ([f0bf463](https://github.com/ipfs/helia-remote-pinning/commit/f0bf463f5656c7dc0c56af65e776a0b19f9dc818))
+
+
+### Documentation
+
+* add usage documentation ([83ebc05](https://github.com/ipfs/helia-remote-pinning/commit/83ebc05ed8ecb1b18049dd2ff63b5456e080daf8))
+* **readme:** import actual library in example code ([12820e3](https://github.com/ipfs/helia-remote-pinning/commit/12820e350c695ec543394f896297b112eeab2456))
+* **readme:** whitespace cleanup ([ebd1eb2](https://github.com/ipfs/helia-remote-pinning/commit/ebd1eb2228bc748032edf1a96bbc39d77ed1f404))
+* **readme:** whitespace cleanup ([34a62c9](https://github.com/ipfs/helia-remote-pinning/commit/34a62c98da64589deae9ab95b64ed3a433b0528b))
+
+
+### Dependencies
+
+* bump p-retry from 5.1.2 to 6.0.0 ([08c2654](https://github.com/ipfs/helia-remote-pinning/commit/08c265495a9feb58b1788f1bfb627fd8f6ffe01e))
+* bump p-retry from 5.1.2 to 6.0.0 ([08c2654](https://github.com/ipfs/helia-remote-pinning/commit/08c265495a9feb58b1788f1bfb627fd8f6ffe01e))
+* bump p-retry from 5.1.2 to 6.0.0 ([ba12302](https://github.com/ipfs/helia-remote-pinning/commit/ba123023da2c457414e2619753dc10ea8c6d6c92))
+* update deps ([72e9755](https://github.com/ipfs/helia-remote-pinning/commit/72e975500ad4bacc32a26251bbdf7a2a08519f2d))
+* update to latest deps ([#42](https://github.com/ipfs/helia-remote-pinning/issues/42)) ([4d9ad33](https://github.com/ipfs/helia-remote-pinning/commit/4d9ad331279f23fbcd001bf5469f3c5c9769c76d))
+
+
+### Refactors
+
+* use signal.throwIfAborted ([371dec0](https://github.com/ipfs/helia-remote-pinning/commit/371dec07094ef9b2b3042440423e83b7c8fbb36e))
+
 ## [1.1.1](https://github.com/ipfs/helia-remote-pinning/compare/v1.1.0...v1.1.1) (2023-09-06)
 
 
