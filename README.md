@@ -4,9 +4,7 @@
   </a>
 </p>
 
-# helia-delegated-routing-v1-http-api
-
-# @helia/pinning-service-api
+# @helia/remote-pinning
 
 [![ipfs.tech](https://img.shields.io/badge/project-IPFS-blue.svg?style=flat-square)](https://ipfs.tech)
 [![Discuss](https://img.shields.io/discourse/https/discuss.ipfs.tech/posts.svg?style=flat-square)](https://discuss.ipfs.tech)
@@ -17,15 +15,13 @@
 
 ## About
 
-This repo contains a server implementation of the IPFS [Delegated Routing V1 HTTP API](https://specs.ipfs.tech/routing/http-routing-v1/) along with a client that can be used to interact with any compliant server implementation.
+This repo contains a server implementation of the [IPFS Pinning Service API](https://ipfs.github.io/pinning-services-api-spec/) spec along with a client that can be used to interact with any compliant server implementation.
 
 # Packages
 
 - [`packages/client`](https://github.com/ipfs/helia-remote-pinning/tree/main/packages/client) Add remote pinning capabilities to Helia
 - [`packages/interop`](https://github.com/ipfs/helia-remote-pinning/tree/main/packages/interop) Interop tests for the IPFS Pinning Service API client and server powered by Helia
 - [`packages/server`](https://github.com/ipfs/helia-remote-pinning/tree/main/packages/server) An IPFS Pinning Service API server powered by Helia
-
-> The Delegated Routing V1 HTTP API powered by Helia
 
 # API Docs
 

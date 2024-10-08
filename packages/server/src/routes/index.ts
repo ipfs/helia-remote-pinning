@@ -2,7 +2,8 @@
  * @packageDocumentation
  *
  * Configure your existing Fastify instance with routes that conform to the
- * [Routing V1 HTTP API](https://specs.ipfs.tech/routing/http-routing-v1/) spec.
+ * [IPFS Pinning Service API](https://ipfs.github.io/pinning-services-api-spec/)
+ * spec.
  *
  * @example
  *
@@ -23,7 +24,7 @@
  *
  * const helia = await createHelia()
  *
- * // configure Routing V1 HTTP API routes
+ * // configure Pinning Service HTTP API routes
  * routes(server, helia)
  *
  * await server.listen({
