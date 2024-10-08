@@ -44,7 +44,7 @@
  *
  * const helia = await createHelia()
  *
- * // configure Routing V1 HTTP API routes
+ * // configure Pinning Service HTTP API routes
  * routes(server, helia)
  *
  * await server.listen({
