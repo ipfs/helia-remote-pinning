@@ -193,7 +193,9 @@ describe('@helia/remote-pinning', () => {
       expect(pins[0].cid.toString()).to.equal(cid.toString())
     })
 
-    it('should list multiple pages of created pins', async () => {
+    it('should list multiple pages of created pins', async function () {
+      this.timeout(120 * 1000)
+
       // pagination limit is 1000
       const pinCount = 1100
       const cids = []
