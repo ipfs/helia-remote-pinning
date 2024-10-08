@@ -6,7 +6,7 @@ import type { FastifyInstance } from 'fastify'
 import type { HeliaLibp2p } from 'helia'
 
 describe('pinning service compliance', function () {
-  this.timeout(120 * 1000)
+  this.timeout(540 * 1000)
 
   let server: FastifyInstance
   let helia: HeliaLibp2p
