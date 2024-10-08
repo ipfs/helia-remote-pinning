@@ -218,8 +218,7 @@ export class PinStore <T extends Libp2p = Libp2p> {
 
         status.status = 'pinned'
         await this.helia.datastore.put(dsKey, cborg.encode(status))
-
-        opts?.signal?.throwIfAborted()
+        await this.helia.routing.provide(opts.cid, opts)
       } catch (err: any) {
         this.log.error('failed to pin %c - %e', opts.cid, err)
 

@@ -25,7 +25,7 @@
   "scripts": {
     "clean": "aegir clean",
     "lint": "aegir lint",
-    "dep-check": "aegir dep-check",
+    "dep-check": "aegir dep-check -i @ipfs-shipyard/pinning-service-compliance",
     "build": "aegir build --bundle false",
     "test": "aegir test -t node",
     "test:node": "aegir test -t node --cov"
@@ -33,6 +33,7 @@
   "devDependencies": {
     "@helia/pinning-service-api-server": "~0.0.0",
     "@helia/remote-pinning": "^1.0.0",
+    "@ipfs-shipyard/pinning-service-compliance": "^1.8.1",
     "aegir": "^44.1.2",
     "execa": "^9.4.0",
     "fastify": "^5.0.0",

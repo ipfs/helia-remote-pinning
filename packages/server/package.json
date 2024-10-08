@@ -147,7 +147,7 @@
   "scripts": {
     "clean": "aegir clean",
     "lint": "aegir lint",
-    "dep-check": "aegir dep-check -i sinon",
+    "dep-check": "aegir dep-check",
     "build": "aegir build --bundle false",
     "test": "aegir test -t node",
     "test:node": "aegir test -t node --cov",
@@ -172,7 +172,6 @@
   "devDependencies": {
     "@ipfs-shipyard/pinning-service-client": "^3.0.0",
     "@types/sinon": "^17.0.3",
-    "aegir": "^44.1.2",
-    "sinon": "^19.0.2"
+    "aegir": "^44.1.2"
   }
 }
