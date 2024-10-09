@@ -4,6 +4,7 @@ import { createHelia } from 'helia'
 import { nanoid } from 'nanoid'
 import type { FastifyInstance } from 'fastify'
 import type { HeliaLibp2p } from 'helia'
+import { expect } from 'aegir/chai'
 
 describe('pinning service compliance', function () {
   this.timeout(540 * 1000)
@@ -47,9 +48,19 @@ describe('pinning service compliance', function () {
     const tests = execa('npx', ['@ipfs-shipyard/pinning-service-compliance', '-s', `http://localhost:${addresses[0]?.port}`, authtoken])
     tests.stdout?.on('data', buf => {
       process.stdout.write(buf)
+
+      if (buf.toString().includes('❌') === true) {
+        tests.kill()
+        expect.fail('compliance tests failed')
+      }
     })
     tests.stderr?.on('data', buf => {
       process.stderr.write(buf)
+
+      if (buf.toString().includes('❌') === true) {
+        tests.kill()
+        expect.fail('compliance tests failed')
+      }
     })
     await tests
   })
