@@ -1,97 +1,40 @@
-# @helia/remote-pinning <!-- omit in toc -->
+<p align="center">
+  <a href="https://github.com/ipfs/helia" title="Helia">
+    <img src="https://raw.githubusercontent.com/ipfs/helia/main/assets/helia.png" alt="Helia logo" width="300" />
+  </a>
+</p>
+
+# @helia/remote-pinning
 
 [![ipfs.tech](https://img.shields.io/badge/project-IPFS-blue.svg?style=flat-square)](https://ipfs.tech)
 [![Discuss](https://img.shields.io/discourse/https/discuss.ipfs.tech/posts.svg?style=flat-square)](https://discuss.ipfs.tech)
 [![codecov](https://img.shields.io/codecov/c/github/ipfs/helia-remote-pinning.svg?style=flat-square)](https://codecov.io/gh/ipfs/helia-remote-pinning)
 [![CI](https://img.shields.io/github/actions/workflow/status/ipfs/helia-remote-pinning/js-test-and-release.yml?branch=main\&style=flat-square)](https://github.com/ipfs/helia-remote-pinning/actions/workflows/js-test-and-release.yml?query=branch%3Amain)
 
-> A library that helps Helia users pin content via the IPFS pinning-services-api-spec
+> A IPFS Pinning Service API implementation powered by Helia
 
-## Table of contents <!-- omit in toc -->
+## About
 
-- [Install](#install)
-  - [Browser `<script>` tag](#browser-script-tag)
-- [Documentation](#documentation)
-  - [Create remote pinner](#create-remote-pinner)
-  - [Add a pin](#add-a-pin)
-  - [Replace a pin](#replace-a-pin)
-- [Lead Maintainer](#lead-maintainer)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contribute](#contribute)
+This repo contains a server implementation of the [IPFS Pinning Service API](https://ipfs.github.io/pinning-services-api-spec/) spec along with a client that can be used to interact with any compliant server implementation.
 
-## Install
+# Packages
 
-```console
-$ npm i @helia/remote-pinning
-```
+- [`packages/client`](https://github.com/ipfs/helia-remote-pinning/tree/main/packages/client) Add remote pinning capabilities to Helia
+- [`packages/interop`](https://github.com/ipfs/helia-remote-pinning/tree/main/packages/interop) Interop tests for the IPFS Pinning Service API client and server powered by Helia
+- [`packages/server`](https://github.com/ipfs/helia-remote-pinning/tree/main/packages/server) An IPFS Pinning Service API server powered by Helia
 
-### Browser `<script>` tag
+# API Docs
 
-Loading this module through a script tag will make it's exports available as `HeliaRemotePinning` in the global namespace.
+- <https://ipfs.github.io/helia-remote-pinning>
 
-```html
-<script src="https://unpkg.com/@helia/remote-pinning/dist/index.min.js"></script>
-```
-
-## Documentation
-
-### Create remote pinner
-
-```typescript
-import { unixfs } from '@helia/unixfs'
-import { Configuration, RemotePinningServiceClient } from '@ipfs-shipyard/pinning-service-client'
-import { createHelia } from 'helia'
-import { createRemotePinner } from '@helia/remote-pinning'
-
-const helia = await createHelia()
-const pinServiceConfig = new Configuration({
-  endpointUrl: `${endpointUrl}`, // the URI for your pinning provider, e.g. `http://localhost:3000`
-  accessToken: `${accessToken}` // the secret token/key given to you by your pinning provider
-})
-
-const remotePinningClient = new RemotePinningServiceClient(pinServiceConfig)
-const remotePinner = createRemotePinner(helia, remotePinningClient)
-```
-
-### Add a pin
-
-```typescript
-const heliaFs = unixfs(helia)
-const cid = await heliaFs.addBytes(encoder.encode('hello world'))
-const addPinResult = await remotePinner.addPin({
-  cid,
-  name: 'helloWorld'
-})
-```
-
-### Replace a pin
-
-```typescript
-const newCid = await heliaFs.addBytes(encoder.encode('hi galaxy'))
-const replacePinResult = await remotePinner.replacePin({
-  newCid,
-  name: 'hiGalaxy',
-  requestid: addPinResult.requestid
-})
-```
-
-## Lead Maintainer
-
-[SgtPooki](https://github.com/sgtpooki)
-
-## Contributing
-
-Contributions are welcome! This repository is part of the IPFS project and therefore governed by our [contributing guidelines](https://github.com/ipfs/community/blob/master/CONTRIBUTING.md).
-
-## License
+# License
 
 Licensed under either of
 
-- Apache 2.0, ([LICENSE-APACHE](LICENSE-APACHE) / <http://www.apache.org/licenses/LICENSE-2.0>)
-- MIT ([LICENSE-MIT](LICENSE-MIT) / <http://opensource.org/licenses/MIT>)
+- Apache 2.0, ([LICENSE-APACHE](https://github.com/ipfs/helia-remote-pinning/blob/main/LICENSE-APACHE) / <http://www.apache.org/licenses/LICENSE-2.0>)
+- MIT ([LICENSE-MIT](https://github.com/ipfs/helia-remote-pinning/blob/main/LICENSE-MIT) / <http://opensource.org/licenses/MIT>)
 
-## Contribute
+# Contribute
 
 Contributions welcome! Please check out [the issues](https://github.com/ipfs/helia-remote-pinning/issues).
 

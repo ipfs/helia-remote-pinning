@@ -1,6 +1,7 @@
 {
-  "entryPoints": [
-    "./src/index.ts",
-    "./src/errors.ts"
+  "$schema": "https://typedoc.org/schema.json",
+  "name": "Helia Remote Pinning Service",
+  "exclude": [
+    "packages/interop"
   ]
 }
