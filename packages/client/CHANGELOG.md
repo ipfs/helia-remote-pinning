@@ -1,3 +1,13 @@
+## [@helia/remote-pinning-v2.0.0](https://github.com/ipfs/helia-remote-pinning/compare/@helia/remote-pinning-1.2.0...@helia/remote-pinning-2.0.0) (2024-10-10)
+
+### ⚠ BREAKING CHANGES
+
+* the `@helia/remote-pinning` module returns an instance of Pins augmented with extra arguments
+
+### Features
+
+* implement as pins api, add server, convert to monorepo ([#51](https://github.com/ipfs/helia-remote-pinning/issues/51)) ([2a9d25b](https://github.com/ipfs/helia-remote-pinning/commit/2a9d25b850fca56c7b30518c0cf0625b88fcf781))
+
 ## [1.2.0](https://github.com/ipfs/helia-remote-pinning/compare/v1.1.1...v1.2.0) (2024-02-07)
 
 
