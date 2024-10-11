@@ -35,8 +35,8 @@ describe('pinning service compliance', function () {
   })
 
   afterEach(async () => {
-    server?.server.closeAllConnections()
     await server?.close()
+    server?.server.closeAllConnections()
     await helia?.stop()
   })
 

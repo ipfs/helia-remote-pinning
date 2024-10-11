@@ -52,8 +52,8 @@ describe('pinning-service-api interop', () => {
   })
 
   afterEach(async () => {
-    server?.server.closeAllConnections()
     await server?.close()
+    server?.server.closeAllConnections()
     await pinningServiceHelia?.stop()
     await localHelia?.stop()
   })
