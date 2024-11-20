@@ -16,6 +16,16 @@ describe('pinning service compliance', function () {
   beforeEach(async () => {
     authtoken = nanoid()
 
+    // generate a token that can be passed as a CLI arg without tripping up the
+    // arg parser
+    while (true) {
+      if (authtoken.startsWith('-')) {
+        authtoken = nanoid()
+      } else {
+        break
+      }
+    }
+
     helia = await createHelia()
     server = await createPinningServiceAPIServer(helia, {
       validateAccessToken: (token) => {
