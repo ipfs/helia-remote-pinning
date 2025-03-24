@@ -174,7 +174,7 @@
     "race-signal": "^1.1.0"
   },
   "devDependencies": {
-    "@helia/unixfs": "^4.0.0",
+    "@helia/unixfs": "^5.0.0",
     "aegir": "^45.0.2",
     "get-port": "^7.1.0",
     "it-all": "^3.0.6",
