@@ -1,3 +1,9 @@
+## [@helia/pinning-service-api-server-v1.0.2](https://github.com/ipfs/helia-remote-pinning/compare/@helia/pinning-service-api-server-1.0.1...@helia/pinning-service-api-server-1.0.2) (2025-03-26)
+
+### Dependencies
+
+* bump @fastify/cors from 10.1.0 to 11.0.1 ([#62](https://github.com/ipfs/helia-remote-pinning/issues/62)) ([d47f18c](https://github.com/ipfs/helia-remote-pinning/commit/d47f18cee99b379cda878a1a73cb04212051dbb3))
+
 ## [@helia/pinning-service-api-server-v1.0.1](https://github.com/ipfs/helia-remote-pinning/compare/@helia/pinning-service-api-server-1.0.0...@helia/pinning-service-api-server-1.0.1) (2024-11-20)
 
 ### Dependencies

@@ -1,6 +1,6 @@
 {
   "name": "@helia/pinning-service-api-server",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "An IPFS Pinning Service API server powered by Helia",
   "license": "Apache-2.0 OR MIT",
   "homepage": "https://github.com/ipfs/helia-remote-pinning/tree/main/packages/server#readme",
