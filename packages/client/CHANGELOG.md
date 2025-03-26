@@ -1,3 +1,9 @@
+## [@helia/remote-pinning-v2.0.2](https://github.com/ipfs/helia-remote-pinning/compare/@helia/remote-pinning-2.0.1...@helia/remote-pinning-2.0.2) (2025-03-26)
+
+### Dependencies
+
+* **dev:** bump @helia/unixfs from 4.0.3 to 5.0.0 ([#61](https://github.com/ipfs/helia-remote-pinning/issues/61)) ([cee1b9c](https://github.com/ipfs/helia-remote-pinning/commit/cee1b9c3c10c69dec6261c2dcdb59132e604533d))
+
 ## [@helia/remote-pinning-v2.0.1](https://github.com/ipfs/helia-remote-pinning/compare/@helia/remote-pinning-2.0.0...@helia/remote-pinning-2.0.1) (2024-11-20)
 
 ### Dependencies
