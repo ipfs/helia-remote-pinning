@@ -154,7 +154,7 @@
     "release": "aegir release"
   },
   "dependencies": {
-    "@fastify/cors": "^10.0.1",
+    "@fastify/cors": "^11.0.1",
     "@libp2p/interface": "^2.1.2",
     "@libp2p/utils": "^6.1.0",
     "@multiformats/multiaddr": "^12.3.1",
