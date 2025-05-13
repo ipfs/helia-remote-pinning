@@ -172,6 +172,6 @@
   "devDependencies": {
     "@ipfs-shipyard/pinning-service-client": "^3.0.0",
     "@types/sinon": "^17.0.3",
-    "aegir": "^45.0.2"
+    "aegir": "^46.0.1"
   }
 }
