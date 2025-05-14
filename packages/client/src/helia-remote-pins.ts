@@ -3,7 +3,7 @@ import { NotFoundError, InvalidParametersError } from '@libp2p/interface'
 import { logger } from '@libp2p/logger'
 import { multiaddr } from '@multiformats/multiaddr'
 import delay from 'delay'
-import { CID, type Version } from 'multiformats/cid'
+import { CID } from 'multiformats/cid'
 import { CustomProgressEvent } from 'progress-events'
 import { raceSignal } from 'race-signal'
 import { PinningFailedError } from './errors.js'
@@ -12,6 +12,7 @@ import type { RemotePinningServiceClient, PinsGetRequest, PinsRequestidPostReque
 import type { AbortOptions, Libp2p } from '@libp2p/interface'
 import type { Multiaddr } from '@multiformats/multiaddr'
 import type { HeliaLibp2p, RmOptions } from 'helia'
+import type { Version } from 'multiformats/cid'
 
 const log = logger('helia:remote-pinning')
 

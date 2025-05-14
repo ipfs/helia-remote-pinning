@@ -31,17 +31,17 @@
     "test:node": "aegir test -t node --cov"
   },
   "devDependencies": {
-    "@helia/pinning-service-api-server": "file:../server",
-    "@helia/remote-pinning": "file:../client",
+    "@helia/pinning-service-api-server": "^1.0.0",
+    "@helia/remote-pinning": "^2.0.0",
     "@ipfs-shipyard/pinning-service-compliance": "^1.8.1",
     "aegir": "^46.0.1",
-    "execa": "^9.4.0",
-    "fastify": "^5.0.0",
-    "helia": "^5.0.0",
-    "it-all": "^3.0.6",
-    "it-drain": "^3.0.7",
-    "multiformats": "^13.3.0",
-    "nanoid": "^5.0.7"
+    "execa": "^9.5.3",
+    "fastify": "^5.3.3",
+    "helia": "^5.4.1",
+    "it-all": "^3.0.8",
+    "it-drain": "^3.0.9",
+    "multiformats": "^13.3.3",
+    "nanoid": "^5.1.5"
   },
   "private": true
 }

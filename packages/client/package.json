@@ -143,7 +143,15 @@
       "@semantic-release/changelog",
       "@semantic-release/npm",
       "@semantic-release/github",
-      "@semantic-release/git"
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "CHANGELOG.md",
+            "package.json"
+          ]
+        }
+      ]
     ]
   },
   "scripts": {
@@ -164,21 +172,21 @@
   },
   "dependencies": {
     "@ipfs-shipyard/pinning-service-client": "^3.0.0",
-    "@libp2p/interface": "^2.1.2",
-    "@libp2p/logger": "^5.1.0",
-    "@multiformats/multiaddr": "^12.3.1",
+    "@libp2p/interface": "^2.9.0",
+    "@libp2p/logger": "^5.1.15",
+    "@multiformats/multiaddr": "^12.4.0",
     "delay": "^6.0.0",
-    "helia": "^5.0.0",
-    "multiformats": "^13.3.0",
+    "helia": "^5.4.1",
+    "multiformats": "^13.3.3",
     "progress-events": "^1.0.1",
-    "race-signal": "^1.1.0"
+    "race-signal": "^1.1.3"
   },
   "devDependencies": {
-    "@helia/unixfs": "^5.0.0",
+    "@helia/unixfs": "^5.0.2",
     "aegir": "^46.0.1",
     "get-port": "^7.1.0",
-    "it-all": "^3.0.6",
-    "it-drain": "^3.0.7",
+    "it-all": "^3.0.8",
+    "it-drain": "^3.0.9",
     "mock-ipfs-pinning-service": "^0.4.2"
   }
 }
