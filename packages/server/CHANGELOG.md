@@ -1,3 +1,9 @@
+## [@helia/pinning-service-api-server-v1.0.3](https://github.com/ipfs/helia-remote-pinning/compare/@helia/pinning-service-api-server-1.0.2...@helia/pinning-service-api-server-1.0.3) (2025-05-14)
+
+### Dependencies
+
+* **dev:** bump aegir from 45.2.1 to 46.0.1 ([#65](https://github.com/ipfs/helia-remote-pinning/issues/65)) ([f335020](https://github.com/ipfs/helia-remote-pinning/commit/f335020132df0e644184ef90574c10a69a0000e9))
+
 ## [@helia/pinning-service-api-server-v1.0.2](https://github.com/ipfs/helia-remote-pinning/compare/@helia/pinning-service-api-server-1.0.1...@helia/pinning-service-api-server-1.0.2) (2025-03-26)
 
 ### Dependencies
