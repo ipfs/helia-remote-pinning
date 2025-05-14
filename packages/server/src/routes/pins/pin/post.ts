@@ -1,6 +1,7 @@
-import { setMaxListeners, type Libp2p } from '@libp2p/interface'
+import { setMaxListeners } from '@libp2p/interface'
 import { mapPinStatus } from '../../../utils/map-pin-status.js'
 import { parseMeta } from '../../../utils/parse-meta.js'
+import type { Libp2p } from '@libp2p/interface'
 import type { FastifyInstance } from 'fastify'
 import type { HeliaLibp2p } from 'helia'
 

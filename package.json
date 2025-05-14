@@ -1,5 +1,5 @@
 {
-  "name": "@helia/pinning-service-api",
+  "name": "@helia/remote-pinning",
   "version": "0.0.0",
   "description": "A IPFS Pinning Service API implementation powered by Helia",
   "license": "Apache-2.0 OR MIT",
@@ -36,7 +36,7 @@
     "docs:no-publish": "aegir docs --publish false"
   },
   "devDependencies": {
-    "aegir": "^45.0.2",
+    "aegir": "^46.0.1",
     "npm-run-all": "^4.1.5",
     "rimraf": "^6.0.1"
   },
