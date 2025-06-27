@@ -34,7 +34,7 @@
     "@helia/pinning-service-api-server": "^1.0.0",
     "@helia/remote-pinning": "^2.0.0",
     "@ipfs-shipyard/pinning-service-compliance": "^1.8.1",
-    "aegir": "^46.0.1",
+    "aegir": "^47.0.19",
     "execa": "^9.5.3",
     "fastify": "^5.3.3",
     "helia": "^5.4.1",
