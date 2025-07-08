@@ -15,13 +15,6 @@
     "IPFS"
   ],
   "type": "module",
-  "eslintConfig": {
-    "extends": "ipfs",
-    "parserOptions": {
-      "project": true,
-      "sourceType": "module"
-    }
-  },
   "scripts": {
     "clean": "aegir clean",
     "lint": "aegir lint",
@@ -34,13 +27,13 @@
     "@helia/pinning-service-api-server": "^1.0.0",
     "@helia/remote-pinning": "^2.0.0",
     "@ipfs-shipyard/pinning-service-compliance": "^1.8.1",
-    "aegir": "^46.0.1",
-    "execa": "^9.5.3",
-    "fastify": "^5.3.3",
-    "helia": "^5.4.1",
-    "it-all": "^3.0.8",
-    "it-drain": "^3.0.9",
-    "multiformats": "^13.3.3",
+    "aegir": "^47.0.20",
+    "execa": "^9.6.0",
+    "fastify": "^5.4.0",
+    "helia": "^5.4.2",
+    "it-all": "^3.0.9",
+    "it-drain": "^3.0.10",
+    "multiformats": "^13.3.7",
     "nanoid": "^5.1.5"
   },
   "private": true
