@@ -183,7 +183,7 @@
   },
   "devDependencies": {
     "@helia/unixfs": "^5.0.2",
-    "aegir": "^46.0.1",
+    "aegir": "^47.0.20",
     "get-port": "^7.1.0",
     "it-all": "^3.0.8",
     "it-drain": "^3.0.9",
