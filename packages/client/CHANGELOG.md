@@ -1,3 +1,9 @@
+## [@helia/remote-pinning-v2.0.4](https://github.com/ipfs/helia-remote-pinning/compare/@helia/remote-pinning-2.0.3...@helia/remote-pinning-2.0.4) (2025-07-08)
+
+### Dependencies
+
+* **dev:** bump aegir from 46.0.5 to 47.0.20 ([#74](https://github.com/ipfs/helia-remote-pinning/issues/74)) ([b5d8bc4](https://github.com/ipfs/helia-remote-pinning/commit/b5d8bc45562b6067dda267e2816e440cc5fe131f))
+
 ## [@helia/remote-pinning-v2.0.3](https://github.com/ipfs/helia-remote-pinning/compare/@helia/remote-pinning-2.0.2...@helia/remote-pinning-2.0.3) (2025-05-14)
 
 ### Dependencies
