@@ -3,5 +3,10 @@
   "name": "Helia Remote Pinning Service",
   "exclude": [
     "packages/interop"
-  ]
+  ],
+  "readme": "./README.md",
+  "headings": {
+    "readme": false,
+    "document": false
+  }
 }
