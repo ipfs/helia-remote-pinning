@@ -158,7 +158,7 @@
     "@fastify/cors": "^11.0.1",
     "@libp2p/interface": "^2.10.5",
     "@libp2p/utils": "^6.7.1",
-    "@multiformats/multiaddr": "^12.5.1",
+    "@multiformats/multiaddr": "^13.0.0",
     "cborg": "^4.2.12",
     "fastify": "^5.4.0",
     "helia": "^5.4.2",
