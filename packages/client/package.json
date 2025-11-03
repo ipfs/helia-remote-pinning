@@ -168,7 +168,7 @@
     "@libp2p/interface": "^2.10.5",
     "@libp2p/logger": "^5.1.21",
     "@multiformats/multiaddr": "^12.5.1",
-    "delay": "^6.0.0",
+    "delay": "^7.0.0",
     "helia": "^5.4.2",
     "multiformats": "^13.3.7",
     "progress-events": "^1.0.1",
