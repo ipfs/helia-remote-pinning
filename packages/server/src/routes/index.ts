@@ -35,11 +35,11 @@
  * ```
  */
 
-import getPins from './pins/get.js'
-import deletePin from './pins/pin/delete.js'
-import getPin from './pins/pin/get.js'
-import postPin from './pins/pin/post.js'
-import postPins from './pins/post.js'
+import getPins from './pins/get.ts'
+import deletePin from './pins/pin/delete.ts'
+import getPin from './pins/pin/get.ts'
+import postPin from './pins/pin/post.ts'
+import postPins from './pins/post.ts'
 import type { PinStoreInit } from '../index.js'
 import type { Libp2p } from '@libp2p/interface'
 import type { FastifyInstance } from 'fastify'

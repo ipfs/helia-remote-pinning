@@ -1,5 +1,5 @@
-import pinStore from './pin-store.js'
-import user from './user.js'
+import pinStore from './pin-store.ts'
+import user from './user.ts'
 import type { AccessTokenValidator } from '../index.js'
 import type { Libp2p } from '@libp2p/interface'
 import type { FastifyInstance } from 'fastify'

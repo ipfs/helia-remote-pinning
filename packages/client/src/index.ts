@@ -66,7 +66,7 @@
  * 3. The remote pinning API accepts several extra arguments to several operations - these can be sent in a type-safe way using the `HeliaWithRemotePins` interface, which is the return type of the exported `heliaWithRemotePins` function
  */
 import { Configuration, RemotePinningServiceClient } from '@ipfs-shipyard/pinning-service-client'
-import { HeliaRemotePins } from './helia-remote-pins.js'
+import { HeliaRemotePins } from './helia-remote-pins.ts'
 import type { ConfigurationParameters, Status, TextMatchingStrategy } from '@ipfs-shipyard/pinning-service-client'
 import type { AbortOptions, Libp2p } from '@libp2p/interface'
 import type { Multiaddr } from '@multiformats/multiaddr'

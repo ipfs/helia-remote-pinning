@@ -1,5 +1,3 @@
-/* eslint-env mocha */
-
 import { RemotePinningServiceClient, Configuration } from '@ipfs-shipyard/pinning-service-client'
 import { expect } from 'aegir/chai'
 import { createHelia } from 'helia'

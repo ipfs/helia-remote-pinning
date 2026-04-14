@@ -57,9 +57,9 @@
 
 import cors from '@fastify/cors'
 import fastify from 'fastify'
-import hooks from './hooks/index.js'
-import routes from './routes/index.js'
-import type { PinStoreInit } from './pin-store.js'
+import hooks from './hooks/index.ts'
+import routes from './routes/index.ts'
+import type { PinStoreInit } from './pin-store.ts'
 import type { AbortOptions, Libp2p } from '@libp2p/interface'
 import type { FastifyListenOptions, FastifyInstance } from 'fastify'
 import type { Helia } from 'helia'

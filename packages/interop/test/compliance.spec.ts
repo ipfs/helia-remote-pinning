@@ -1,8 +1,8 @@
 import { createPinningServiceAPIServer } from '@helia/pinning-service-api-server'
 import { expect } from 'aegir/chai'
 import { execa } from 'execa'
-import { createHelia } from 'helia'
 import { nanoid } from 'nanoid'
+import { createHelia } from './fixtures/create-helia.ts'
 import type { FastifyInstance } from 'fastify'
 import type { Helia } from 'helia'
 
