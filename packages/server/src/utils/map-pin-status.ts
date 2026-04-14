@@ -1,11 +1,11 @@
 import type { PinStatus } from '../index.js'
 import type { StoredPinStatus } from '../pin-store.js'
 import type { Libp2p } from '@libp2p/interface'
-import type { HeliaLibp2p } from 'helia'
+import type { Helia } from 'helia'
 
 const MAX_DELEGATES = 20
 
-export function mapPinStatus <T extends Libp2p = Libp2p> (pinStatus: StoredPinStatus, helia: HeliaLibp2p<T>): PinStatus {
+export function mapPinStatus <T extends Libp2p = Libp2p> (pinStatus: StoredPinStatus, helia: Helia<T>): PinStatus {
   return {
     requestid: pinStatus.id,
     status: pinStatus.status,

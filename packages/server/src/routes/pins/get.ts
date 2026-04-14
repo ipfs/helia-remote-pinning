@@ -2,7 +2,7 @@ import { setMaxListeners } from '@libp2p/interface'
 import { mapPinStatus } from '../../utils/map-pin-status.js'
 import type { Libp2p } from '@libp2p/interface'
 import type { FastifyInstance } from 'fastify'
-import type { HeliaLibp2p } from 'helia'
+import type { Helia } from 'helia'
 
 interface Querystring {
   cid?: string
@@ -15,7 +15,7 @@ interface Querystring {
   meta?: string
 }
 
-export default function getPins <T extends Libp2p = Libp2p> (fastify: FastifyInstance, helia: HeliaLibp2p<T>): void {
+export default function getPins <T extends Libp2p = Libp2p> (fastify: FastifyInstance, helia: Helia<T>): void {
   fastify.route<{ Querystring: Querystring }>({
     method: 'GET',
     url: '/pins',

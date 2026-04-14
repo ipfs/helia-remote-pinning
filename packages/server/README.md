@@ -91,7 +91,7 @@ $ npm i @helia/pinning-service-api-server
 
 # API Docs
 
-- <https://ipfs.github.io/helia-remote-pinning/modules/_helia_pinning_service_api_server.html>
+- <https://ipfs.github.io/helia-remote-pinning/modules/_helia_pinning-service-api-server.html>
 
 # License
 

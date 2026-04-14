@@ -3,7 +3,7 @@ import { mapPinStatus } from '../../utils/map-pin-status.js'
 import { parseMeta } from '../../utils/parse-meta.js'
 import type { Libp2p } from '@libp2p/interface'
 import type { FastifyInstance } from 'fastify'
-import type { HeliaLibp2p } from 'helia'
+import type { Helia } from 'helia'
 
 interface Body {
   cid: string
@@ -12,7 +12,7 @@ interface Body {
   meta?: Record<string, any>
 }
 
-export default function postPins <T extends Libp2p = Libp2p> (fastify: FastifyInstance, helia: HeliaLibp2p<T>): void {
+export default function postPins <T extends Libp2p = Libp2p> (fastify: FastifyInstance, helia: Helia<T>): void {
   fastify.route<{ Body: Body }>({
     method: 'POST',
     url: '/pins',
@@ -48,7 +48,7 @@ export default function postPins <T extends Libp2p = Libp2p> (fastify: FastifyIn
       let cid: CID
       try {
         cid = CID.parse(cidStr)
-      } catch (err) {
+      } catch (err: any) {
         fastify.log.error('could not parse CID from body', err)
         return reply.code(400).type('text/html').send('Bad Request')
       }

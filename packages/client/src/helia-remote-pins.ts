@@ -6,24 +6,24 @@ import delay from 'delay'
 import { CID } from 'multiformats/cid'
 import { CustomProgressEvent } from 'progress-events'
 import { raceSignal } from 'race-signal'
-import { PinningFailedError } from './errors.js'
-import type { MulitaddrFilter, HeliaRemotePinnerInit, RemoteAddOptions, RemoteIsPinnedOptions, RemoteLsOptions, RemotePin, RemotePins } from './index.js'
+import { PinningFailedError } from './errors.ts'
+import type { MulitaddrFilter, HeliaRemotePinnerInit, RemoteAddOptions, RemoteIsPinnedOptions, RemoteLsOptions, RemotePin, RemotePins } from './index.ts'
 import type { RemotePinningServiceClient, PinsGetRequest, PinsRequestidPostRequest } from '@ipfs-shipyard/pinning-service-client'
 import type { AbortOptions, Libp2p } from '@libp2p/interface'
 import type { Multiaddr } from '@multiformats/multiaddr'
-import type { HeliaLibp2p, RmOptions } from 'helia'
+import type { Helia, RmOptions } from 'helia'
 import type { Version } from 'multiformats/cid'
 
 const log = logger('helia:remote-pinning')
 
 export class HeliaRemotePins <T extends Libp2p = Libp2p> implements RemotePins {
-  private readonly helia: HeliaLibp2p<T>
+  private readonly helia: Helia<T>
   private readonly remotePinningClient: RemotePinningServiceClient
   private readonly originFilter: MulitaddrFilter
   private readonly delegateFilter: MulitaddrFilter
   private readonly pollInterval: number
 
-  constructor (helia: HeliaLibp2p<T>, remotePinningClient: RemotePinningServiceClient, init: HeliaRemotePinnerInit = {}) {
+  constructor (helia: Helia<T>, remotePinningClient: RemotePinningServiceClient, init: HeliaRemotePinnerInit = {}) {
     this.helia = helia
     this.remotePinningClient = remotePinningClient
     this.originFilter = init.originFilter ?? ((arg) => arg)
@@ -44,7 +44,7 @@ export class HeliaRemotePins <T extends Libp2p = Libp2p> implements RemotePins {
     // them by embedded PeerId. Treat them individually if no PeerId is present.
     const addresses: Record<string, Multiaddr[]> = {}
     this.delegateFilter(delegates).forEach(ma => {
-      const peerId = ma.getPeerId() ?? `${Math.random()}`
+      const peerId = ma.getComponents().filter(c => c.name === 'p2p').map(c => c.value).pop() ?? `${Math.random()}`
       addresses[peerId] ??= []
       addresses[peerId].push(ma)
     })
@@ -104,9 +104,7 @@ export class HeliaRemotePins <T extends Libp2p = Libp2p> implements RemotePins {
         break
       }
 
-      await raceSignal(delay(this.pollInterval), options.signal, {
-        errorName: 'TimeoutError'
-      })
+      await raceSignal(delay(this.pollInterval), options.signal)
     }
 
     options.onProgress?.(new CustomProgressEvent<CID>('helia:pin:add', cid))

@@ -1,7 +1,7 @@
 import { PinStore } from '../pin-store.js'
 import type { Libp2p } from '@libp2p/interface'
 import type { FastifyInstance } from 'fastify'
-import type { HeliaLibp2p } from 'helia'
+import type { Helia } from 'helia'
 
 // add the `.pinStore` property to the request types
 declare module 'fastify' {
@@ -13,7 +13,7 @@ declare module 'fastify' {
 /**
  * Create and return an IPFS Pinning Service API server
  */
-export default function pinStore <T extends Libp2p = Libp2p> (server: FastifyInstance, helia: HeliaLibp2p<T>): void {
+export default function pinStore <T extends Libp2p = Libp2p> (server: FastifyInstance, helia: Helia<T>): void {
   server.addHook('preHandler', async (request, reply) => {
     if (request.pinStore == null) {
       request.pinStore = new PinStore(helia)
