@@ -1,3 +1,14 @@
+## [@helia/pinning-service-api-server-v2.0.0](https://github.com/ipfs/helia-remote-pinning/compare/@helia/pinning-service-api-server-1.0.4...@helia/pinning-service-api-server-2.0.0) (2026-04-14)
+
+### ⚠ BREAKING CHANGES
+
+* Please use helia@6.x.x or later
+
+### Bug Fixes
+
+* update helia/libp2p deps to latest versions ([#85](https://github.com/ipfs/helia-remote-pinning/issues/85)) ([284da82](https://github.com/ipfs/helia-remote-pinning/commit/284da82a8ea93f630f6bceb6d038570ed8a5c42d))
+* update project to enable require ([#86](https://github.com/ipfs/helia-remote-pinning/issues/86)) ([afadf2d](https://github.com/ipfs/helia-remote-pinning/commit/afadf2ded2888f5027a7cea86581056661fa753d))
+
 ## [@helia/pinning-service-api-server-v1.0.4](https://github.com/ipfs/helia-remote-pinning/compare/@helia/pinning-service-api-server-1.0.3...@helia/pinning-service-api-server-1.0.4) (2025-07-08)
 
 ### Dependencies
