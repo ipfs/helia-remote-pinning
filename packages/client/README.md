@@ -110,7 +110,7 @@ Loading this module through a script tag will make its exports available as `Hel
 
 # API Docs
 
-- <https://ipfs.github.io/helia-remote-pinning/modules/_helia_remote_pinning.html>
+- <https://ipfs.github.io/helia-remote-pinning/modules/_helia_remote-pinning.html>
 
 # License
 
