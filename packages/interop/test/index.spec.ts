@@ -1,5 +1,3 @@
-/* eslint-env mocha */
-
 import { createPinningServiceAPIServer } from '@helia/pinning-service-api-server'
 import { heliaWithRemotePins } from '@helia/remote-pinning'
 import { expect } from 'aegir/chai'
@@ -9,15 +7,15 @@ import { CID } from 'multiformats/cid'
 import * as raw from 'multiformats/codecs/raw'
 import { sha256 } from 'multiformats/hashes/sha2'
 import { nanoid } from 'nanoid'
-import { createHelia } from './fixtures/create-helia.js'
+import { createHelia } from './fixtures/create-helia.ts'
 import type { HeliaWithRemotePins } from '@helia/remote-pinning'
 import type { FastifyInstance } from 'fastify'
-import type { HeliaLibp2p } from 'helia'
+import type { Helia } from 'helia'
 
 describe('pinning-service-api interop', () => {
   let server: FastifyInstance
   let localHelia: HeliaWithRemotePins
-  let pinningServiceHelia: HeliaLibp2p
+  let pinningServiceHelia: Helia
   let cid: CID
   let block: Uint8Array
 

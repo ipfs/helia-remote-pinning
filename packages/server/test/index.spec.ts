@@ -1,5 +1,3 @@
-/* eslint-env mocha */
-
 import { RemotePinningServiceClient, Configuration } from '@ipfs-shipyard/pinning-service-client'
 import { expect } from 'aegir/chai'
 import { createHelia } from 'helia'
@@ -8,10 +6,10 @@ import * as raw from 'multiformats/codecs/raw'
 import { identity } from 'multiformats/hashes/identity'
 import { createPinningServiceAPIServer } from '../src/index.js'
 import type { FastifyInstance } from 'fastify'
-import type { HeliaLibp2p } from 'helia'
+import type { Helia } from 'helia'
 
 describe('pinning-api-server', () => {
-  let helia: HeliaLibp2p
+  let helia: Helia
   let server: FastifyInstance
   let endpointUrl: string
   const accessToken = 'my-token'

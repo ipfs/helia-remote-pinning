@@ -1,5 +1,5 @@
 import { AbortError } from '@libp2p/interface'
-import { Queue } from '@libp2p/utils/queue'
+import { Queue } from '@libp2p/utils'
 import * as cborg from 'cborg'
 import { Key } from 'interface-datastore'
 import all from 'it-all'
@@ -8,10 +8,10 @@ import length from 'it-length'
 import map from 'it-map'
 import { CID } from 'multiformats/cid'
 import { nanoid } from 'nanoid'
-import { calculateDials } from './utils/calculate-dials.js'
-import type { Pin, PinningServiceUser, PinStatus } from './index.js'
+import { calculateDials } from './utils/calculate-dials.ts'
+import type { Pin, PinningServiceUser, PinStatus } from './index.ts'
 import type { AbortOptions, Libp2p, Logger } from '@libp2p/interface'
-import type { HeliaLibp2p } from 'helia'
+import type { Helia } from 'helia'
 import type { Query } from 'interface-datastore'
 
 export interface StoredPinStatus {
@@ -108,13 +108,13 @@ const matchers: Record<string, Matcher> = {
  * current pinning operations
  */
 export class PinStore <T extends Libp2p = Libp2p> {
-  private readonly helia: HeliaLibp2p<T>
+  private readonly helia: Helia<T>
   private readonly queue: Queue<void, JobOptions>
   private readonly log: Logger
   private readonly datastorePrefix: string
   private readonly pinRefCountKey: string
 
-  constructor (helia: HeliaLibp2p<T>, init: PinStoreInit = {}) {
+  constructor (helia: Helia<T>, init: PinStoreInit = {}) {
     this.helia = helia
     this.log = this.helia.logger.forComponent('helia:pinning-service:pin-operations')
     this.queue = new Queue({

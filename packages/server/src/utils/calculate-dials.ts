@@ -15,7 +15,7 @@ export function calculateDials (addrs?: string[]): Multiaddr[][] {
   addrs
     .map(addr => multiaddr(addr))
     .forEach(ma => {
-      const peerId = ma.getPeerId() ?? '-'
+      const peerId = ma.getComponents().filter(c => c.name === 'p2p').map(c => c.value).pop() ?? '-'
 
       output[peerId] ??= []
       output[peerId].push(ma)

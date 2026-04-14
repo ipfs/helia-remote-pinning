@@ -3,7 +3,7 @@ import { mapPinStatus } from '../../../utils/map-pin-status.js'
 import { parseMeta } from '../../../utils/parse-meta.js'
 import type { Libp2p } from '@libp2p/interface'
 import type { FastifyInstance } from 'fastify'
-import type { HeliaLibp2p } from 'helia'
+import type { Helia } from 'helia'
 
 interface Params {
   requestid: string
@@ -16,7 +16,7 @@ interface Body {
   meta?: Record<string, any>
 }
 
-export default function postPin <T extends Libp2p = Libp2p> (fastify: FastifyInstance, helia: HeliaLibp2p<T>): void {
+export default function postPin <T extends Libp2p = Libp2p> (fastify: FastifyInstance, helia: Helia<T>): void {
   fastify.route<{ Params: Params, Body: Body }>({
     method: 'POST',
     url: '/pins/:requestid',
