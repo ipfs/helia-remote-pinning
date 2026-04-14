@@ -43,13 +43,13 @@ import postPins from './pins/post.js'
 import type { PinStoreInit } from '../index.js'
 import type { Libp2p } from '@libp2p/interface'
 import type { FastifyInstance } from 'fastify'
-import type { HeliaLibp2p } from 'helia'
+import type { Helia } from 'helia'
 
 export interface RoutesOptions {
   pinstore?: PinStoreInit
 }
 
-export default function routes <T extends Libp2p = Libp2p> (fastify: FastifyInstance, helia: HeliaLibp2p<T>, init: RoutesOptions): void {
+export default function routes <T extends Libp2p = Libp2p> (fastify: FastifyInstance, helia: Helia<T>, init: RoutesOptions): void {
   getPins(fastify, helia)
   postPins(fastify, helia)
   getPin(fastify, helia)

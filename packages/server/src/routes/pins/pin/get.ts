@@ -1,13 +1,13 @@
 import { mapPinStatus } from '../../../utils/map-pin-status.js'
 import type { Libp2p } from '@libp2p/interface'
 import type { FastifyInstance } from 'fastify'
-import type { HeliaLibp2p } from 'helia'
+import type { Helia } from 'helia'
 
 interface Params {
   requestid: string
 }
 
-export default function getPin <T extends Libp2p = Libp2p> (fastify: FastifyInstance, helia: HeliaLibp2p<T>): void {
+export default function getPin <T extends Libp2p = Libp2p> (fastify: FastifyInstance, helia: Helia<T>): void {
   fastify.route<{ Params: Params }>({
     method: 'GET',
     url: '/pins/:requestid',

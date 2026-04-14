@@ -68,9 +68,9 @@
 import { Configuration, RemotePinningServiceClient } from '@ipfs-shipyard/pinning-service-client'
 import { HeliaRemotePins } from './helia-remote-pins.js'
 import type { ConfigurationParameters, Status, TextMatchingStrategy } from '@ipfs-shipyard/pinning-service-client'
-import type { Libp2p } from '@libp2p/interface'
-import type { AbortOptions, Multiaddr } from '@multiformats/multiaddr'
-import type { AddOptions, HeliaLibp2p, IsPinnedOptions, LsOptions, Pin, Pins } from 'helia'
+import type { AbortOptions, Libp2p } from '@libp2p/interface'
+import type { Multiaddr } from '@multiformats/multiaddr'
+import type { AddOptions, Helia, IsPinnedOptions, LsOptions, Pin, Pins } from 'helia'
 import type { CID } from 'multiformats/cid'
 
 /**
@@ -173,12 +173,12 @@ export interface RemotePins extends Pins {
   setMetadata(cid: CID, metadata: Record<string, string> | undefined, options?: AbortOptions): Promise<void>
 }
 
-export type HeliaWithRemotePins<T extends Libp2p = Libp2p> = Omit<HeliaLibp2p<T>, 'pins'> & { pins: RemotePins }
+export type HeliaWithRemotePins<T extends Libp2p = Libp2p> = Omit<Helia<T>, 'pins'> & { pins: RemotePins }
 
 /**
  * Create a remote pins instance powered by the passed Helia node
  */
-export function createRemotePins <T extends Libp2p = Libp2p> (helia: HeliaLibp2p<T>, init: HeliaRemotePinnerInit = {}): RemotePins {
+export function createRemotePins <T extends Libp2p = Libp2p> (helia: Helia<T>, init: HeliaRemotePinnerInit = {}): RemotePins {
   return new HeliaRemotePins(helia, new RemotePinningServiceClient(new Configuration(init)), init)
 }
 
@@ -186,7 +186,7 @@ export function createRemotePins <T extends Libp2p = Libp2p> (helia: HeliaLibp2p
  * Patches the passed Helia node with the remote pins instance, this function
  * makes dealing with the types a little easier
  */
-export function heliaWithRemotePins <T extends Libp2p = Libp2p> (helia: HeliaLibp2p<T>, init: HeliaRemotePinnerInit = {}): HeliaWithRemotePins<T> {
+export function heliaWithRemotePins <T extends Libp2p = Libp2p> (helia: Helia<T>, init: HeliaRemotePinnerInit = {}): HeliaWithRemotePins<T> {
   helia.pins = createRemotePins(helia, init)
 
   return helia as any

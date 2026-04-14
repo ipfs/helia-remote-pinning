@@ -62,7 +62,7 @@ import routes from './routes/index.js'
 import type { PinStoreInit } from './pin-store.js'
 import type { AbortOptions, Libp2p } from '@libp2p/interface'
 import type { FastifyListenOptions, FastifyInstance } from 'fastify'
-import type { HeliaLibp2p } from 'helia'
+import type { Helia } from 'helia'
 
 export type { PinStoreInit }
 
@@ -135,7 +135,7 @@ export interface ServerInit {
 /**
  * Create and return an IPFS Pinning Service API server
  */
-export async function createPinningServiceAPIServer <T extends Libp2p = Libp2p> (helia: HeliaLibp2p<T>, init: ServerInit): Promise<FastifyInstance> {
+export async function createPinningServiceAPIServer <T extends Libp2p = Libp2p> (helia: Helia<T>, init: ServerInit): Promise<FastifyInstance> {
   const server = init.fastify ?? fastify()
   await server.register(cors, {
     origin: '*',

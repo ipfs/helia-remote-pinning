@@ -12,12 +12,12 @@ import { nanoid } from 'nanoid'
 import { createHelia } from './fixtures/create-helia.js'
 import type { HeliaWithRemotePins } from '@helia/remote-pinning'
 import type { FastifyInstance } from 'fastify'
-import type { HeliaLibp2p } from 'helia'
+import type { Helia } from 'helia'
 
 describe('pinning-service-api interop', () => {
   let server: FastifyInstance
   let localHelia: HeliaWithRemotePins
-  let pinningServiceHelia: HeliaLibp2p
+  let pinningServiceHelia: Helia
   let cid: CID
   let block: Uint8Array
 
