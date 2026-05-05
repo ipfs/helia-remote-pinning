@@ -28,7 +28,7 @@
     "@helia/remote-pinning": "^2.0.0",
     "@ipfs-shipyard/pinning-service-compliance": "^1.8.1",
     "@libp2p/tcp": "^11.0.15",
-    "aegir": "^47.1.5",
+    "aegir": "^48.0.1",
     "execa": "^9.6.1",
     "fastify": "^5.8.4",
     "helia": "^6.1.3",
