@@ -1,5 +1,5 @@
-import type { PinStatus } from '../index.js'
-import type { StoredPinStatus } from '../pin-store.js'
+import type { PinStatus } from '../index.ts'
+import type { StoredPinStatus } from '../pin-store.ts'
 import type { Libp2p } from '@libp2p/interface'
 import type { Helia } from 'helia'
 

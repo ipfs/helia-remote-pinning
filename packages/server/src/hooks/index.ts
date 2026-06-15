@@ -1,6 +1,6 @@
 import pinStore from './pin-store.ts'
 import user from './user.ts'
-import type { AccessTokenValidator } from '../index.js'
+import type { AccessTokenValidator } from '../index.ts'
 import type { Libp2p } from '@libp2p/interface'
 import type { FastifyInstance } from 'fastify'
 import type { Helia } from 'helia'

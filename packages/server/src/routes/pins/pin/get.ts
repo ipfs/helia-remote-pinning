@@ -1,4 +1,4 @@
-import { mapPinStatus } from '../../../utils/map-pin-status.js'
+import { mapPinStatus } from '../../../utils/map-pin-status.ts'
 import type { Libp2p } from '@libp2p/interface'
 import type { FastifyInstance } from 'fastify'
 import type { Helia } from 'helia'

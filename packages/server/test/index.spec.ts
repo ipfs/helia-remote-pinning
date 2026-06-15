@@ -4,7 +4,7 @@ import { createHelia } from 'helia'
 import { CID } from 'multiformats/cid'
 import * as raw from 'multiformats/codecs/raw'
 import { identity } from 'multiformats/hashes/identity'
-import { createPinningServiceAPIServer } from '../src/index.js'
+import { createPinningServiceAPIServer } from '../src/index.ts'
 import type { FastifyInstance } from 'fastify'
 import type { Helia } from 'helia'
 

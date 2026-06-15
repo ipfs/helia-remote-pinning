@@ -1,4 +1,4 @@
-import type { PinningServiceUser, AccessTokenValidator } from '../index.js'
+import type { PinningServiceUser, AccessTokenValidator } from '../index.ts'
 import type { FastifyInstance } from 'fastify'
 
 // add the `.user` property to the request types
