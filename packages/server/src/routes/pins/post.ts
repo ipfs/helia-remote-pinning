@@ -1,6 +1,6 @@
 import { CID } from 'multiformats/cid'
-import { mapPinStatus } from '../../utils/map-pin-status.js'
-import { parseMeta } from '../../utils/parse-meta.js'
+import { mapPinStatus } from '../../utils/map-pin-status.ts'
+import { parseMeta } from '../../utils/parse-meta.ts'
 import type { Libp2p } from '@libp2p/interface'
 import type { FastifyInstance } from 'fastify'
 import type { Helia } from 'helia'

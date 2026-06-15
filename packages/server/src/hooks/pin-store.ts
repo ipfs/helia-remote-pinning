@@ -1,4 +1,4 @@
-import { PinStore } from '../pin-store.js'
+import { PinStore } from '../pin-store.ts'
 import type { Libp2p } from '@libp2p/interface'
 import type { FastifyInstance } from 'fastify'
 import type { Helia } from 'helia'
