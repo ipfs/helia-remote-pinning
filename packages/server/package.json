@@ -163,13 +163,13 @@
     "@multiformats/multiaddr": "^13.0.3",
     "cborg": "^5.1.1",
     "fastify": "^5.8.5",
-    "helia": "^6.1.4",
-    "interface-datastore": "^9.0.3",
+    "helia": "^7.0.0",
+    "interface-datastore": "^10.0.1",
     "it-all": "^3.0.11",
     "it-drain": "^3.0.12",
     "it-length": "^3.0.11",
     "it-map": "^3.1.6",
-    "multiformats": "^13.4.2",
+    "multiformats": "^14.0.2",
     "nanoid": "^5.1.11"
   },
   "devDependencies": {
